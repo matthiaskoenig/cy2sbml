@@ -79,7 +79,16 @@ MIRIAM
 	MiriamJavaLib_standalone-1.1.5.jar
 
 ------------------------------------------------------------
+*** Build instructions ***
+Clone
+	git clone git://git.code.sf.net/p/cysbml/code cysbml-code
+	cd cysbml-code
+Build in ./build
+	ant cysbml
+
+------------------------------------------------------------
 v1.29 [2013-11-05]
+- Source code with ANT build files from sourceforge available
 - Implemented: Gene Regulatory Network support (GRN2SBML with ExTILAR & NetGenerator)
 - Speed Improvements: Caching of Miriram resource loading
 - Speed Improvements: Deactivation of CySBML results in hybernating of all lookups
