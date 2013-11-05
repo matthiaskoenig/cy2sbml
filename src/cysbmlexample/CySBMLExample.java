@@ -53,7 +53,7 @@ public class CySBMLExample extends CytoscapePlugin {
 	public final String NAME = CySBMLPlugin.NAME + "Example";
 	
 	public CySBMLExample() {
-		System.out.println(NAME + CySBMLPlugin.VERSION);
+		System.out.println(NAME + "[INFO]->" + NAME + "-" + CySBMLPlugin.VERSION);
 		Example1Action action1 = new Example1Action();
 		action1.setPreferredMenu("Plugins");
 		Cytoscape.getDesktop().getCyMenus().addAction(action1);

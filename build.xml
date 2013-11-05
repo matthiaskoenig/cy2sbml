@@ -1,43 +1,84 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="cysbml" name="Plugin with dependencies in one jar">
+<project name="CySBML" default="cysbml" basedir=".">
+    <description>
+        CySBML build ANT build file
+    </description>
+  	
+	<!-- set global properties for this build -->
+  	<property name="name" value="CySBML"/>
+    <property name="version" value="v1.29"/>
+    <property name="libDir" value="lib"/>	        	
+    <property name="src" location="src"/>
+	<property name="build" location="build"/>
+	<property name="dist"  location="dist"/>
 	
-    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
-    <!--ANT 1.7 is required-->
-    
-    <target name="cysbml">
-        <property name="name" value="CySBML"/>
-    	<property name="version" value="v1.29"/>
-    	<property name="libDir" value="lib"/>	        	
-    	<property name="buildDir" value="build"/>
-    		
-       <jar destfile="${buildDir}/${name}-${version}.jar">	
+	 <path id="master-classpath">
+	   <fileset dir="${libDir}">
+	     <include name="sbml/jsbml-1.0-a1-with-dependencies.jar"/>
+	   	 <include name="sbml/jsbml-layout-1.0-b1.jar"/>
+	     <include name="sbml/jsbml-qual-2.1-b1.jar"/>
+	     <include name="MiriamJavaLib_standalone-1.1.5.jar"/>
+	   	 <include name="biomodels-wslib_standalone-1.21.jar"/>
+	     <include name="ehcache-2.7.5.jar"/>
+	   	 <include name="slf4j-api-1.6.6.jar"/>
+	     <include name="slf4j-jdk14-1.6.6.jar"/>
+	   </fileset>
+	   <fileset dir="${libDir}/cytoscape">
+	   </fileset>
+	 </path>
+	
+	<target name="init">
+	   <!-- Create the time stamp -->
+	   <tstamp/>
+	   <!-- Create the build directory structure used by compile -->
+	   <mkdir dir="${build}"/>
+	</target>
+
+	<target name="compile" depends="init" description="compile the source " >
+	    <!-- Compile the java code from ${src} into ${build} -->
+	    <javac srcdir="${src}" 
+	    	   destdir="${build}"
+	    	   includeantruntime="false"
+	    	   classpathref="master-classpath"/>
+	</target>
+
+	<target name="dist" depends="compile" description="generate the distribution" >
+	    <!-- Create the distribution directory -->
+		<mkdir dir="${dist}/lib"/>
+	    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+	    <jar jarfile="${dist}/lib/${name}-${version}-${DSTAMP}.jar" basedir="${build}"/>
+	  </target>
+
+	  <target name="clean" description="clean up" >
+	    <!-- Delete the ${build} directory tree -->
+	    <delete dir="${build}"/>
+	  </target>
+	
+    <target name="cysbml" depends="init, compile">
+       <jar destfile="${build}/${name}-${version}.jar">	
         	<manifest>
                 <attribute name="Class-Path" value="."/>
             	<attribute name="Cytoscape-Plugin" value="cysbml.CySBMLPlugin"/>
             </manifest>
-            <fileset dir="src">
-            	<include name="cysbml/**/*"/>
-            </fileset>
-            <fileset dir="bin">
+        	<fileset dir="${src}">
+    	    	<include name="cysbml/**/*"/>
+        	</fileset>
+            <fileset dir="${build}">
         	    <include name="cysbml/**/*"/>
             </fileset>
-            	<zipfileset excludes="META-INF/*.SF" src="${libDir}/jsbml-1.0-a1-with-dependencies.jar"/>
-            	<zipfileset excludes="META-INF/*.SF" src="${libDir}/jsbml-layout-1.0-b1.jar"/>
-            	<zipfileset excludes="META-INF/*.SF" src="${libDir}/jsbml-qual-2.1-b1.jar"/>
-            	<zipfileset excludes="META-INF/*.SF" src="${libDir}/MiriamJavaLib_standalone-1.1.5.jar"/>
-            	<zipfileset excludes="META-INF/*.SF" src="${libDir}/biomodels-wslib_standalone-1.21.jar"/>
-            	<zipfileset excludes="META-INF/*.SF" src="${libDir}/ehcache-2.7.5.jar"/>
-            	<zipfileset excludes="META-INF/*.SF" src="${libDir}/slf4j-api-1.6.6.jar"/>
-            	<zipfileset excludes="META-INF/*.SF" src="${libDir}/slf4j-jdk14-1.6.6.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${libDir}/sbml/jsbml-1.0-a1-with-dependencies.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${libDir}/sbml/jsbml-layout-1.0-b1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${libDir}/sbml/jsbml-qual-2.1-b1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${libDir}/MiriamJavaLib_standalone-1.1.5.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${libDir}/biomodels-wslib_standalone-1.21.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${libDir}/ehcache-2.7.5.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${libDir}/slf4j-api-1.6.6.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${libDir}/slf4j-jdk14-1.6.6.jar"/>
         </jar>
     </target>
 	
-    <target name="cysbml-example">
-       <property name="name" value="CySBMLExample"/>
-       <property name="version" value="v1.29"/> 
-       <property name="libDir" value="lib"/>	 
-       <property name="buildDir" value="build"/>
-       <jar destfile="${buildDir}/${name}-${version}.jar">	
+    <target name="cysbml-example" depends="init,compile">
+       <jar destfile="${build}/${name}Example-${version}.jar">	
         	<manifest>
                 <attribute name="Class-Path" value="."/>
             	<attribute name="Cytoscape-Plugin" value="cysbmlexample.CySBMLExample"/>
@@ -45,10 +86,10 @@
             <fileset dir="src">
             	<include name="cysbmlexample/**/*"/>
             </fileset>
-            <fileset dir="bin">
-     	        <include name="cysbmlexample/**/*"/>
-            </fileset>
-            <zipfileset excludes="META-INF/*.SF" src="${libDir}/jsbml-1.0-a1-with-dependencies.jar"/>
+       		<fileset dir="${build}">
+    	    	<include name="cysbmlexample/**/*"/>
+        	</fileset>
+            <zipfileset excludes="META-INF/*.SF" src="${libDir}/sbml/jsbml-1.0-a1-with-dependencies.jar"/>
         </jar>
     </target>
 	

@@ -54,7 +54,6 @@ import cysbml.cyactions.ValidationAction;
 
 import cysbml.gui.NavigationPanel;
 import cysbml.logging.LogCySBML;
-import cysbml.sbmltest.TestRunner;
 import cysbml.SBMLFilter;
 
 /**
@@ -76,6 +75,8 @@ import cysbml.SBMLFilter;
  *    		-> preprocessing of the SBML file for availability of referred information in 
  *    			kineticLaws and the Parameters (represent kinetics and parameters in proper view)
  *    TODO: provide source for download
+ *    TODO: additional test files SBML
+ *    FIXME: still problems with the offline mode
  *    IMPLEMENT: save SBML layouts
  *    IMPLEMENT: export SBML    
  *    IMPLEMENT: include CyFluxViz file exporter in SBMLSimulator !
@@ -159,11 +160,6 @@ public class CySBMLPlugin extends CytoscapePlugin implements PropertyChangeListe
 		    navigationPanel.deactivate();
 	
 		    LogCySBML.config("Initialization finished");
-	    	
-		    if (TESTING){
-	    		LogCySBML.config("Perform SBML tests");
-	    		TestRunner.runTests();
-	    	}
 		}
 		catch (Exception e){
 			e.printStackTrace();
