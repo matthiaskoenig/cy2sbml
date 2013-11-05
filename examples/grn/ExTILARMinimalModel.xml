@@ -1,0 +1,650 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
+  <model id="ExTILAR_Minimal_Model" name="ExTILAR Minimal Model" metaid="_00000007" timeUnits="time" extentUnits="dimensionless" substanceUnits="log2fc">
+    <annotation>
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+        <rdf:Description rdf:about="#_00000007">
+          <dc:creator>
+            <rdf:Bag>
+              <rdf:li rdf:parseType="Resource">
+                <vCard:N rdf:parseType="Resource">
+                  <vCard:Family>Vlaic</vCard:Family>
+                  <vCard:Given>Sebastian</vCard:Given>
+                </vCard:N>
+                <vCard:EMAIL>Sebastian.Vlaic@hki-jena.de</vCard:EMAIL>
+                <vCard:ORG rdf:parseType="Resource">
+                  <vCard:Orgname>Hans-Knoell-Institute Jena</vCard:Orgname>
+                </vCard:ORG>
+              </rdf:li>
+            </rdf:Bag>
+          </dc:creator>
+          <dcterms:created rdf:parseType="Resource">
+            <dcterms:W3CDTF>2013-11-01T14:28:18Z</dcterms:W3CDTF>
+          </dcterms:created>
+          <dcterms:modified rdf:parseType="Resource">
+            <dcterms:W3CDTF>2013-11-01T14:28:18Z</dcterms:W3CDTF>
+          </dcterms:modified>
+          <bqmodel:isDescribedBy>
+            <rdf:Bag>
+              <rdf:li rdf:resource="urn:miriam:pubmed.db:23803467"/>
+            </rdf:Bag>
+          </bqmodel:isDescribedBy>
+        </rdf:Description>
+      </rdf:RDF>
+    </annotation>
+      <listOfUnitDefinitions>
+      <unitDefinition id="log2fc" name="log2 fold-change">
+        <listOfUnits>
+          <unit scale="0" exponent="1" multiplier="1" kind="dimensionless"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="time" name="time">
+        <listOfUnits>
+          <unit scale="0" exponent="1" multiplier="3600" kind="second"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="per_time" name="per time">
+        <listOfUnits>
+          <unit scale="0" exponent="-1" multiplier="3600" kind="second"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="cell" constant="true" spatialDimensions="3" name="cell" metaid="_00000001" sboTerm="SBO:0000410" units="litre" size="1">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_00000001">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:obo.go:GO%3A0005623"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="Input" constant="false" initialAmount="0" hasOnlySubstanceUnits="true" name="Input" boundaryCondition="true" sboTerm="SBO:0000405" substanceUnits="log2fc" compartment="cell"/>
+      <species id="G1" constant="false" initialAmount="0" hasOnlySubstanceUnits="true" name="G1" boundaryCondition="true" sboTerm="SBO:0000250" substanceUnits="log2fc" compartment="cell"/>
+      <species id="TF1" constant="false" initialAmount="0" hasOnlySubstanceUnits="true" name="TF1" boundaryCondition="true" sboTerm="SBO:0000252" substanceUnits="log2fc" compartment="cell"/>
+      <species id="G2" constant="false" initialAmount="0" hasOnlySubstanceUnits="true" name="G2" boundaryCondition="true" sboTerm="SBO:0000250" substanceUnits="log2fc" compartment="cell"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="k_G1_TF1" constant="true" value="1" sboTerm="SBO:0000002" units="per_time"/>
+      <parameter id="k_G1_G1" constant="true" value="1" sboTerm="SBO:0000002" units="per_time"/>
+      <parameter id="k_G2_G2" constant="true" value="-1" sboTerm="SBO:0000002" units="per_time"/>
+      <parameter id="k_Input_G1" constant="true" value="1" sboTerm="SBO:0000002" units="per_time"/>
+    </listOfParameters>
+    <listOfRules>
+      <assignmentRule variable="Input">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <piecewise>
+            <piece>
+              <cn type="integer"> 1 </cn>
+              <apply>
+                <gt/>
+                <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> time </csymbol>
+                <cn type="integer"> 0 </cn>
+              </apply>
+            </piece>
+            <otherwise>
+              <cn type="integer"> 0 </cn>
+            </otherwise>
+          </piecewise>
+        </math>
+      </assignmentRule>
+      <rateRule variable="G2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <apply>
+            <plus/>
+            <apply>
+              <times/>
+              <ci> k_G1_TF1 </ci>
+              <ci> G1 </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> k_G2_G2 </ci>
+              <ci> G2 </ci>
+            </apply>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="G1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+          <apply>
+            <plus/>
+            <apply>
+              <times/>
+              <ci> k_G1_G1 </ci>
+              <ci> G1 </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> k_Input_G1 </ci>
+              <ci> Input </ci>
+            </apply>
+          </apply>
+        </math>
+      </rateRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction id="regulation_of_TF1" name="regulation_of_TF1" metaid="_00000002" reversible="true" sboTerm="SBO:0000374" fast="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_00000002">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:obo.go:GO%3A0051090"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+              <listOfProducts>
+          <speciesReference id="SpeciesReference_TF1_ReactionID_regulation_of_TF1" constant="true" species="TF1" sboTerm="SBO:0000011"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference id="ModifierSpeciesReference_G1_ReactionID_regulation_of_TF1" species="G1" sboTerm="SBO:0000459"/>
+        </listOfModifiers>
+      </reaction>
+      <reaction id="expression_of_G2" name="expression_of_G2" metaid="_00000003" reversible="true" sboTerm="SBO:0000589" fast="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_00000003">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:obo.go:GO%3A0010467"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+              <listOfProducts>
+          <speciesReference id="SpeciesReference_G2_ReactionID_expression_of_G2" constant="true" species="G2" sboTerm="SBO:0000011"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference id="ModifierSpeciesReference_TF1_ReactionID_expression_of_G2" species="TF1" sboTerm="SBO:0000019"/>
+          <modifierSpeciesReference id="ModifierSpeciesReference_G2_ReactionID_expression_of_G2" species="G2" sboTerm="SBO:0000020"/>
+        </listOfModifiers>
+      </reaction>
+      <reaction id="expression_of_G1" name="expression_of_G1" metaid="_00000004" reversible="true" sboTerm="SBO:0000589" fast="false">
+        <annotation>
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+            <rdf:Description rdf:about="#_00000004">
+              <bqbiol:is>
+                <rdf:Bag>
+                  <rdf:li rdf:resource="urn:miriam:obo.go:GO%3A0010467"/>
+                </rdf:Bag>
+              </bqbiol:is>
+            </rdf:Description>
+          </rdf:RDF>
+        </annotation>
+              <listOfProducts>
+          <speciesReference id="SpeciesReference_G1_ReactionID_expression_of_G1" constant="true" species="G1" sboTerm="SBO:0000011"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference id="ModifierSpeciesReference_G1_ReactionID_expression_of_G1" species="G1" sboTerm="SBO:0000459"/>
+          <modifierSpeciesReference id="ModifierSpeciesReference_Input_ReactionID_expression_of_G1" species="Input" sboTerm="SBO:0000459"/>
+        </listOfModifiers>
+      </reaction>
+    </listOfReactions>
+      <layout:listOfLayouts xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1">
+      <layout:layout layout:id="automatic_01" layout:name="standard">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>This layout represents the gene regulatory network in the way that ExTILAR inferred networks are displayed and interpreted.</p>
+                    </body>
+          
+        </notes>
+                <layout:dimensions layout:width="800" layout:height="600" layout:depth="0"/>
+        <layout:listOfCompartmentGlyphs>
+          <layout:compartmentGlyph layout:id="automatic_01_CompartmentGlyph_cell" layout:compartment="cell">
+            <layout:boundingBox>
+              <layout:position layout:x="1" layout:y="1" layout:z="0"/>
+              <layout:dimensions layout:width="800" layout:height="600" layout:depth="0"/>
+            </layout:boundingBox>
+          </layout:compartmentGlyph>
+        </layout:listOfCompartmentGlyphs>
+        <layout:listOfSpeciesGlyphs>
+          <layout:speciesGlyph layout:id="automatic_01_SpeciesGlyph_EmptySet_ReactionID_expression_of_G1" sboTerm="SBO:0000291">
+            <layout:boundingBox>
+              <layout:position layout:x="40" layout:y="-20" layout:z="-1"/>
+              <layout:dimensions layout:width="5" layout:height="5" layout:depth="1"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_01_SpeciesGlyph_EmptySet_ReactionID_expression_of_G2" sboTerm="SBO:0000291">
+            <layout:boundingBox>
+              <layout:position layout:x="160" layout:y="-20" layout:z="-1"/>
+              <layout:dimensions layout:width="5" layout:height="5" layout:depth="1"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_01_SpeciesGlyph_EmptySet_ReactionID_regulation_of_TF1" sboTerm="SBO:0000291">
+            <layout:boundingBox>
+              <layout:position layout:x="100" layout:y="-20" layout:z="-1"/>
+              <layout:dimensions layout:width="5" layout:height="5" layout:depth="1"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_01_SpeciesGlyph_Input" layout:species="Input">
+            <layout:boundingBox>
+              <layout:position layout:x="0" layout:y="0" layout:z="0"/>
+              <layout:dimensions layout:width="40" layout:height="40" layout:depth="0"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_01_SpeciesGlyph_G1" layout:species="G1">
+            <layout:boundingBox>
+              <layout:position layout:x="60" layout:y="0" layout:z="0"/>
+              <layout:dimensions layout:width="40" layout:height="40" layout:depth="0"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_01_SpeciesGlyph_TF1" layout:species="TF1">
+            <layout:boundingBox>
+              <layout:position layout:x="120" layout:y="0" layout:z="0"/>
+              <layout:dimensions layout:width="40" layout:height="40" layout:depth="0"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_01_SpeciesGlyph_G2" layout:species="G2">
+            <layout:boundingBox>
+              <layout:position layout:x="180" layout:y="0" layout:z="0"/>
+              <layout:dimensions layout:width="40" layout:height="40" layout:depth="0"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+        </layout:listOfSpeciesGlyphs>
+        <layout:listOfReactionGlyphs>
+          <layout:reactionGlyph layout:id="automatic_01_ReactionGlyph_regulation_of_TF1" sboTerm="SBO:0000374" layout:reaction="regulation_of_TF1">
+            <layout:boundingBox>
+              <layout:position layout:x="110" layout:y="-10" layout:z="-1"/>
+              <layout:dimensions layout:width="10" layout:height="10" layout:depth="0"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="automatic_01_SpeciesReferenceGlyph_Empty_Set_ReactionID_regulation_of_TF1_ProductID_TF1" layout:speciesReference="SpeciesReference_TF1_ReactionID_regulation_of_TF1" layout:role="product" sboTerm="SBO:0000252" layout:speciesGlyph="automatic_01_SpeciesGlyph_TF1"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_01_SpeciesReferenceGlyph__ReactionID_regulation_of_TF1_ProductID_TF1" layout:role="substrate" sboTerm="SBO:0000291" layout:speciesGlyph="automatic_01_SpeciesGlyph_EmptySet_ReactionID_regulation_of_TF1"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_01_SpeciesReferenceGlyph_G1_ReactionID_regulation_of_TF1_ProductID_TF1" layout:speciesReference="ModifierSpeciesReference_G1_ReactionID_regulation_of_TF1" layout:role="activator" sboTerm="SBO:0000250" layout:speciesGlyph="automatic_01_SpeciesGlyph_G1"/>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="automatic_01_ReactionGlyph_expression_of_G2" sboTerm="SBO:0000589" layout:reaction="expression_of_G2">
+            <layout:boundingBox>
+              <layout:position layout:x="170" layout:y="-10" layout:z="-1"/>
+              <layout:dimensions layout:width="10" layout:height="10" layout:depth="0"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="automatic_01_SpeciesReferenceGlyph_Empty_Set_ReactionID_expression_of_G2_ProductID_G2" layout:speciesReference="SpeciesReference_G2_ReactionID_expression_of_G2" layout:role="product" sboTerm="SBO:0000250" layout:speciesGlyph="automatic_01_SpeciesGlyph_G2"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_01_SpeciesReferenceGlyph__ReactionID_expression_of_G2_ProductID_G2" layout:role="substrate" sboTerm="SBO:0000291" layout:speciesGlyph="automatic_01_SpeciesGlyph_EmptySet_ReactionID_expression_of_G2"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_01_SpeciesReferenceGlyph_TF1_ReactionID_expression_of_G2_ProductID_G2" layout:speciesReference="ModifierSpeciesReference_TF1_ReactionID_expression_of_G2" layout:role="modifier" sboTerm="SBO:0000252" layout:speciesGlyph="automatic_01_SpeciesGlyph_TF1"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_01_SpeciesReferenceGlyph_G2_ReactionID_expression_of_G2_ProductID_G2" layout:speciesReference="ModifierSpeciesReference_G2_ReactionID_expression_of_G2" layout:role="inhibitor" sboTerm="SBO:0000250" layout:speciesGlyph="automatic_01_SpeciesGlyph_G2">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment layout:type="CubicBezier">
+                      <layout:start layout:x="180" layout:y="20" layout:z="0"/>
+                      <layout:end layout:x="175" layout:y="0" layout:z="0"/>
+                      <layout:basePoint1 layout:x="140" layout:y="40" layout:z="0"/>
+                      <layout:basePoint2 layout:x="170" layout:y="10" layout:z="0"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="automatic_01_ReactionGlyph_expression_of_G1" sboTerm="SBO:0000589" layout:reaction="expression_of_G1">
+            <layout:boundingBox>
+              <layout:position layout:x="50" layout:y="-10" layout:z="-1"/>
+              <layout:dimensions layout:width="10" layout:height="10" layout:depth="0"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="automatic_01_SpeciesReferenceGlyph_Empty_Set_ReactionID_expression_of_G1_ProductID_G1" layout:speciesReference="SpeciesReference_G1_ReactionID_expression_of_G1" layout:role="product" sboTerm="SBO:0000250" layout:speciesGlyph="automatic_01_SpeciesGlyph_G1"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_01_SpeciesReferenceGlyph__ReactionID_expression_of_G1_ProductID_G1" layout:role="substrate" sboTerm="SBO:0000291" layout:speciesGlyph="automatic_01_SpeciesGlyph_EmptySet_ReactionID_expression_of_G1"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_01_SpeciesReferenceGlyph_G1_ReactionID_expression_of_G1_ProductID_G1" layout:speciesReference="ModifierSpeciesReference_G1_ReactionID_expression_of_G1" layout:role="activator" sboTerm="SBO:0000250" layout:speciesGlyph="automatic_01_SpeciesGlyph_G1">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment layout:type="CubicBezier">
+                      <layout:start layout:x="60" layout:y="20" layout:z="0"/>
+                      <layout:end layout:x="55" layout:y="0" layout:z="0"/>
+                      <layout:basePoint1 layout:x="20" layout:y="40" layout:z="0"/>
+                      <layout:basePoint2 layout:x="50" layout:y="10" layout:z="0"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+              <layout:speciesReferenceGlyph layout:id="automatic_01_SpeciesReferenceGlyph_Input_ReactionID_expression_of_G1_ProductID_G1" layout:speciesReference="ModifierSpeciesReference_Input_ReactionID_expression_of_G1" layout:role="activator" sboTerm="SBO:0000405" layout:speciesGlyph="automatic_01_SpeciesGlyph_Input"/>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+        </layout:listOfReactionGlyphs>
+        <layout:listOfTextGlyphs>
+          <layout:textGlyph layout:graphicalObject="automatic_01_SpeciesGlyph_Input" layout:id="automatic_01_TextGlyph_Input" layout:originOfText="Input"/>
+          <layout:textGlyph layout:graphicalObject="automatic_01_SpeciesGlyph_G1" layout:id="automatic_01_TextGlyph_G1" layout:originOfText="G1"/>
+          <layout:textGlyph layout:graphicalObject="automatic_01_SpeciesGlyph_TF1" layout:id="automatic_01_TextGlyph_TF1" layout:originOfText="TF1"/>
+          <layout:textGlyph layout:graphicalObject="automatic_01_SpeciesGlyph_G2" layout:id="automatic_01_TextGlyph_G2" layout:originOfText="G2"/>
+        </layout:listOfTextGlyphs>
+      </layout:layout>
+      <layout:layout layout:id="automatic_02" layout:name="genes">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>This layout represents the gene regulatory network in the way that ExTILAR inferred networks are simulated (displaying only the genes that are described by a differential equation).</p>
+                    </body>
+          
+        </notes>
+                <layout:dimensions layout:width="800" layout:height="600" layout:depth="0"/>
+        <layout:listOfCompartmentGlyphs>
+          <layout:compartmentGlyph layout:id="automatic_02_CompartmentGlyph_cell" layout:compartment="cell">
+            <layout:boundingBox>
+              <layout:position layout:x="1" layout:y="1" layout:z="0"/>
+              <layout:dimensions layout:width="800" layout:height="600" layout:depth="0"/>
+            </layout:boundingBox>
+          </layout:compartmentGlyph>
+        </layout:listOfCompartmentGlyphs>
+        <layout:listOfSpeciesGlyphs>
+          <layout:speciesGlyph layout:id="automatic_02_SpeciesGlyph_EmptySet_ReactionID_expression_of_G1" sboTerm="SBO:0000291">
+            <layout:boundingBox>
+              <layout:position layout:x="40" layout:y="-20" layout:z="-1"/>
+              <layout:dimensions layout:width="5" layout:height="5" layout:depth="1"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_02_SpeciesGlyph_EmptySet_ReactionID_expression_of_G2" sboTerm="SBO:0000291">
+            <layout:boundingBox>
+              <layout:position layout:x="100" layout:y="-20" layout:z="-1"/>
+              <layout:dimensions layout:width="5" layout:height="5" layout:depth="1"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_02_SpeciesGlyph_Input" layout:species="Input">
+            <layout:boundingBox>
+              <layout:position layout:x="0" layout:y="0" layout:z="0"/>
+              <layout:dimensions layout:width="40" layout:height="40" layout:depth="0"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_02_SpeciesGlyph_G1" layout:species="G1">
+            <layout:boundingBox>
+              <layout:position layout:x="60" layout:y="0" layout:z="0"/>
+              <layout:dimensions layout:width="40" layout:height="40" layout:depth="0"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_02_SpeciesGlyph_G2" layout:species="G2">
+            <layout:boundingBox>
+              <layout:position layout:x="120" layout:y="0" layout:z="0"/>
+              <layout:dimensions layout:width="40" layout:height="40" layout:depth="0"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+        </layout:listOfSpeciesGlyphs>
+        <layout:listOfReactionGlyphs>
+          <layout:reactionGlyph layout:id="automatic_02_ReactionGlyph_expression_of_G2" sboTerm="SBO:0000589" layout:reaction="expression_of_G2">
+            <layout:boundingBox>
+              <layout:position layout:x="110" layout:y="-10" layout:z="-1"/>
+              <layout:dimensions layout:width="10" layout:height="10" layout:depth="0"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="automatic_02_SpeciesReferenceGlyph_Empty_Set_ReactionID_expression_of_G2_ProductID_G2" layout:speciesReference="SpeciesReference_G2_ReactionID_expression_of_G2" layout:role="product" sboTerm="SBO:0000250" layout:speciesGlyph="automatic_02_SpeciesGlyph_G2">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment layout:type="CubicBezier">
+                      <layout:start layout:x="120" layout:y="20" layout:z="0"/>
+                      <layout:end layout:x="115" layout:y="0" layout:z="0"/>
+                      <layout:basePoint1 layout:x="80" layout:y="40" layout:z="0"/>
+                      <layout:basePoint2 layout:x="110" layout:y="10" layout:z="0"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+              <layout:speciesReferenceGlyph layout:id="automatic_02_SpeciesReferenceGlyph__ReactionID_expression_of_G2_ProductID_G2" layout:role="substrate" sboTerm="SBO:0000291" layout:speciesGlyph="automatic_02_SpeciesGlyph_EmptySet_ReactionID_expression_of_G2"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_02_SpeciesReferenceGlyph_G1_ReactionID_regulation_of_TF1_ProductID_G2" layout:role="activator" sboTerm="SBO:0000459" layout:speciesGlyph="automatic_02_SpeciesGlyph_G1"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_02_SpeciesReferenceGlyph_G2_ReactionID_expression_of_G2_ProductID_G2" layout:speciesReference="ModifierSpeciesReference_G2_ReactionID_expression_of_G2" layout:role="inhibitor" sboTerm="SBO:0000020" layout:speciesGlyph="automatic_02_SpeciesGlyph_G2"/>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="automatic_02_ReactionGlyph_expression_of_G1" sboTerm="SBO:0000589" layout:reaction="expression_of_G1">
+            <layout:boundingBox>
+              <layout:position layout:x="50" layout:y="-10" layout:z="-1"/>
+              <layout:dimensions layout:width="10" layout:height="10" layout:depth="0"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="automatic_02_SpeciesReferenceGlyph_Empty_Set_ReactionID_expression_of_G1_ProductID_G1" layout:speciesReference="SpeciesReference_G1_ReactionID_expression_of_G1" layout:role="product" sboTerm="SBO:0000250" layout:speciesGlyph="automatic_02_SpeciesGlyph_G1">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment layout:type="CubicBezier">
+                      <layout:start layout:x="60" layout:y="20" layout:z="0"/>
+                      <layout:end layout:x="55" layout:y="0" layout:z="0"/>
+                      <layout:basePoint1 layout:x="20" layout:y="40" layout:z="0"/>
+                      <layout:basePoint2 layout:x="50" layout:y="10" layout:z="0"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+              <layout:speciesReferenceGlyph layout:id="automatic_02_SpeciesReferenceGlyph__ReactionID_expression_of_G1_ProductID_G1" layout:role="substrate" sboTerm="SBO:0000291" layout:speciesGlyph="automatic_02_SpeciesGlyph_EmptySet_ReactionID_expression_of_G1"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_02_SpeciesReferenceGlyph_G1_ReactionID_expression_of_G1_ProductID_G1" layout:speciesReference="ModifierSpeciesReference_G1_ReactionID_expression_of_G1" layout:role="activator" sboTerm="SBO:0000459" layout:speciesGlyph="automatic_02_SpeciesGlyph_G1"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_02_SpeciesReferenceGlyph_Input_ReactionID_expression_of_G1_ProductID_G1" layout:speciesReference="ModifierSpeciesReference_Input_ReactionID_expression_of_G1" layout:role="activator" sboTerm="SBO:0000459" layout:speciesGlyph="automatic_02_SpeciesGlyph_Input"/>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+        </layout:listOfReactionGlyphs>
+        <layout:listOfTextGlyphs>
+          <layout:textGlyph layout:graphicalObject="automatic_02_SpeciesGlyph_Input" layout:id="automatic_02_TextGlyph_Input" layout:originOfText="Input"/>
+          <layout:textGlyph layout:graphicalObject="automatic_02_SpeciesGlyph_G1" layout:id="automatic_02_TextGlyph_G1" layout:originOfText="G1"/>
+          <layout:textGlyph layout:graphicalObject="automatic_02_SpeciesGlyph_G2" layout:id="automatic_02_TextGlyph_G2" layout:originOfText="G2"/>
+        </layout:listOfTextGlyphs>
+      </layout:layout>
+      <layout:layout layout:id="automatic_03" layout:name="standard_separated_input">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>This layout is identical to the layout standard with the exception that the input nodes are now distributed close to the transcription reaction.</p>
+                    </body>
+          
+        </notes>
+                <layout:dimensions layout:width="800" layout:height="600" layout:depth="0"/>
+        <layout:listOfCompartmentGlyphs>
+          <layout:compartmentGlyph layout:id="automatic_03_CompartmentGlyph_cell" layout:compartment="cell">
+            <layout:boundingBox>
+              <layout:position layout:x="1" layout:y="1" layout:z="0"/>
+              <layout:dimensions layout:width="800" layout:height="600" layout:depth="0"/>
+            </layout:boundingBox>
+          </layout:compartmentGlyph>
+        </layout:listOfCompartmentGlyphs>
+        <layout:listOfSpeciesGlyphs>
+          <layout:speciesGlyph layout:id="automatic_03_SpeciesGlyph_EmptySet_ReactionID_expression_of_G1" sboTerm="SBO:0000291">
+            <layout:boundingBox>
+              <layout:position layout:x="-20" layout:y="-20" layout:z="-1"/>
+              <layout:dimensions layout:width="5" layout:height="5" layout:depth="1"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_03_SpeciesGlyph_EmptySet_ReactionID_expression_of_G2" sboTerm="SBO:0000291">
+            <layout:boundingBox>
+              <layout:position layout:x="100" layout:y="-20" layout:z="-1"/>
+              <layout:dimensions layout:width="5" layout:height="5" layout:depth="1"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_03_SpeciesGlyph_EmptySet_ReactionID_regulation_of_TF1" sboTerm="SBO:0000291">
+            <layout:boundingBox>
+              <layout:position layout:x="40" layout:y="-20" layout:z="-1"/>
+              <layout:dimensions layout:width="5" layout:height="5" layout:depth="1"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_03_SpeciesGlyph_G1" layout:species="G1">
+            <layout:boundingBox>
+              <layout:position layout:x="0" layout:y="0" layout:z="0"/>
+              <layout:dimensions layout:width="40" layout:height="40" layout:depth="0"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_03_SpeciesGlyph_TF1" layout:species="TF1">
+            <layout:boundingBox>
+              <layout:position layout:x="60" layout:y="0" layout:z="0"/>
+              <layout:dimensions layout:width="40" layout:height="40" layout:depth="0"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_03_SpeciesGlyph_G2" layout:species="G2">
+            <layout:boundingBox>
+              <layout:position layout:x="120" layout:y="0" layout:z="0"/>
+              <layout:dimensions layout:width="40" layout:height="40" layout:depth="0"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_03_SpeciesGlyph_Input_ReactionID_expression_of_G1" layout:species="Input">
+            <layout:boundingBox>
+              <layout:position layout:x="5" layout:y="-20" layout:z="-1"/>
+              <layout:dimensions layout:width="5" layout:height="5" layout:depth="1"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+        </layout:listOfSpeciesGlyphs>
+        <layout:listOfReactionGlyphs>
+          <layout:reactionGlyph layout:id="automatic_03_ReactionGlyph_regulation_of_TF1" sboTerm="SBO:0000374" layout:reaction="regulation_of_TF1">
+            <layout:boundingBox>
+              <layout:position layout:x="50" layout:y="-10" layout:z="-1"/>
+              <layout:dimensions layout:width="10" layout:height="10" layout:depth="0"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="automatic_03_SpeciesReferenceGlyph_Empty_Set_ReactionID_regulation_of_TF1_ProductID_TF1" layout:speciesReference="SpeciesReference_TF1_ReactionID_regulation_of_TF1" layout:role="product" sboTerm="SBO:0000252" layout:speciesGlyph="automatic_03_SpeciesGlyph_TF1"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_03_SpeciesReferenceGlyph__ReactionID_regulation_of_TF1_ProductID_TF1" layout:role="substrate" sboTerm="SBO:0000291" layout:speciesGlyph="automatic_03_SpeciesGlyph_EmptySet_ReactionID_regulation_of_TF1"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_03_SpeciesReferenceGlyph_G1_ReactionID_regulation_of_TF1_ProductID_TF1" layout:speciesReference="ModifierSpeciesReference_G1_ReactionID_regulation_of_TF1" layout:role="activator" sboTerm="SBO:0000250" layout:speciesGlyph="automatic_03_SpeciesGlyph_G1"/>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="automatic_03_ReactionGlyph_expression_of_G2" sboTerm="SBO:0000589" layout:reaction="expression_of_G2">
+            <layout:boundingBox>
+              <layout:position layout:x="110" layout:y="-10" layout:z="-1"/>
+              <layout:dimensions layout:width="10" layout:height="10" layout:depth="0"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="automatic_03_SpeciesReferenceGlyph_Empty_Set_ReactionID_expression_of_G2_ProductID_G2" layout:speciesReference="SpeciesReference_G2_ReactionID_expression_of_G2" layout:role="product" sboTerm="SBO:0000250" layout:speciesGlyph="automatic_03_SpeciesGlyph_G2"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_03_SpeciesReferenceGlyph__ReactionID_expression_of_G2_ProductID_G2" layout:role="substrate" sboTerm="SBO:0000291" layout:speciesGlyph="automatic_03_SpeciesGlyph_EmptySet_ReactionID_expression_of_G2"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_03_SpeciesReferenceGlyph_TF1_ReactionID_expression_of_G2_ProductID_G2" layout:speciesReference="ModifierSpeciesReference_TF1_ReactionID_expression_of_G2" layout:role="modifier" sboTerm="SBO:0000252" layout:speciesGlyph="automatic_03_SpeciesGlyph_TF1"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_03_SpeciesReferenceGlyph_G2_ReactionID_expression_of_G2_ProductID_G2" layout:speciesReference="ModifierSpeciesReference_G2_ReactionID_expression_of_G2" layout:role="inhibitor" sboTerm="SBO:0000250" layout:speciesGlyph="automatic_03_SpeciesGlyph_G2">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment layout:type="CubicBezier">
+                      <layout:start layout:x="120" layout:y="20" layout:z="0"/>
+                      <layout:end layout:x="115" layout:y="0" layout:z="0"/>
+                      <layout:basePoint1 layout:x="80" layout:y="40" layout:z="0"/>
+                      <layout:basePoint2 layout:x="110" layout:y="10" layout:z="0"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="automatic_03_ReactionGlyph_expression_of_G1" sboTerm="SBO:0000589" layout:reaction="expression_of_G1">
+            <layout:boundingBox>
+              <layout:position layout:x="-10" layout:y="-10" layout:z="-1"/>
+              <layout:dimensions layout:width="10" layout:height="10" layout:depth="0"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="automatic_03_SpeciesReferenceGlyph_Empty_Set_ReactionID_expression_of_G1_ProductID_G1" layout:speciesReference="SpeciesReference_G1_ReactionID_expression_of_G1" layout:role="product" sboTerm="SBO:0000250" layout:speciesGlyph="automatic_03_SpeciesGlyph_G1"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_03_SpeciesReferenceGlyph__ReactionID_expression_of_G1_ProductID_G1" layout:role="substrate" sboTerm="SBO:0000291" layout:speciesGlyph="automatic_03_SpeciesGlyph_EmptySet_ReactionID_expression_of_G1"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_03_SpeciesReferenceGlyph_G1_ReactionID_expression_of_G1_ProductID_G1" layout:speciesReference="ModifierSpeciesReference_G1_ReactionID_expression_of_G1" layout:role="activator" sboTerm="SBO:0000250" layout:speciesGlyph="automatic_03_SpeciesGlyph_G1">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment layout:type="CubicBezier">
+                      <layout:start layout:x="0" layout:y="20" layout:z="0"/>
+                      <layout:end layout:x="-5" layout:y="0" layout:z="0"/>
+                      <layout:basePoint1 layout:x="-40" layout:y="40" layout:z="0"/>
+                      <layout:basePoint2 layout:x="-10" layout:y="10" layout:z="0"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+              <layout:speciesReferenceGlyph layout:id="automatic_03_SpeciesReferenceGlyph_Input_ReactionID_expression_of_G1_ProductID_G1" layout:speciesReference="ModifierSpeciesReference_Input_ReactionID_expression_of_G1" layout:role="activator" sboTerm="SBO:0000405" layout:speciesGlyph="automatic_03_SpeciesGlyph_Input_ReactionID_expression_of_G1"/>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+        </layout:listOfReactionGlyphs>
+        <layout:listOfTextGlyphs>
+          <layout:textGlyph layout:graphicalObject="automatic_03_SpeciesGlyph_G1" layout:id="automatic_03_TextGlyph_G1" layout:originOfText="G1"/>
+          <layout:textGlyph layout:graphicalObject="automatic_03_SpeciesGlyph_TF1" layout:id="automatic_03_TextGlyph_TF1" layout:originOfText="TF1"/>
+          <layout:textGlyph layout:graphicalObject="automatic_03_SpeciesGlyph_G2" layout:id="automatic_03_TextGlyph_G2" layout:originOfText="G2"/>
+        </layout:listOfTextGlyphs>
+      </layout:layout>
+      <layout:layout layout:id="automatic_04" layout:name="genes_separated_input">
+        <notes>
+          <body xmlns="http://www.w3.org/1999/xhtml">
+                <p>This layout is identical to the layout genes with the exception that the input nodes are now distributed close to the transcription reaction.</p>
+                    </body>
+          
+        </notes>
+                <layout:dimensions layout:width="800" layout:height="600" layout:depth="0"/>
+        <layout:listOfCompartmentGlyphs>
+          <layout:compartmentGlyph layout:id="automatic_04_CompartmentGlyph_cell" layout:compartment="cell">
+            <layout:boundingBox>
+              <layout:position layout:x="1" layout:y="1" layout:z="0"/>
+              <layout:dimensions layout:width="800" layout:height="600" layout:depth="0"/>
+            </layout:boundingBox>
+          </layout:compartmentGlyph>
+        </layout:listOfCompartmentGlyphs>
+        <layout:listOfSpeciesGlyphs>
+          <layout:speciesGlyph layout:id="automatic_04_SpeciesGlyph_EmptySet_ReactionID_expression_of_G1" sboTerm="SBO:0000291">
+            <layout:boundingBox>
+              <layout:position layout:x="-20" layout:y="-20" layout:z="-1"/>
+              <layout:dimensions layout:width="5" layout:height="5" layout:depth="1"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_04_SpeciesGlyph_EmptySet_ReactionID_expression_of_G2" sboTerm="SBO:0000291">
+            <layout:boundingBox>
+              <layout:position layout:x="40" layout:y="-20" layout:z="-1"/>
+              <layout:dimensions layout:width="5" layout:height="5" layout:depth="1"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_04_SpeciesGlyph_G1" layout:species="G1">
+            <layout:boundingBox>
+              <layout:position layout:x="0" layout:y="0" layout:z="0"/>
+              <layout:dimensions layout:width="40" layout:height="40" layout:depth="0"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_04_SpeciesGlyph_G2" layout:species="G2">
+            <layout:boundingBox>
+              <layout:position layout:x="60" layout:y="0" layout:z="0"/>
+              <layout:dimensions layout:width="40" layout:height="40" layout:depth="0"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="automatic_04_SpeciesGlyph_Input_ReactionID_expression_of_G1" layout:species="Input">
+            <layout:boundingBox>
+              <layout:position layout:x="5" layout:y="-20" layout:z="-1"/>
+              <layout:dimensions layout:width="5" layout:height="5" layout:depth="1"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+        </layout:listOfSpeciesGlyphs>
+        <layout:listOfReactionGlyphs>
+          <layout:reactionGlyph layout:id="automatic_04_ReactionGlyph_expression_of_G2" sboTerm="SBO:0000589" layout:reaction="expression_of_G2">
+            <layout:boundingBox>
+              <layout:position layout:x="50" layout:y="-10" layout:z="-1"/>
+              <layout:dimensions layout:width="10" layout:height="10" layout:depth="0"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="automatic_04_SpeciesReferenceGlyph_Empty_Set_ReactionID_expression_of_G2_ProductID_G2" layout:speciesReference="SpeciesReference_G2_ReactionID_expression_of_G2" layout:role="product" sboTerm="SBO:0000250" layout:speciesGlyph="automatic_04_SpeciesGlyph_G2">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment layout:type="CubicBezier">
+                      <layout:start layout:x="60" layout:y="20" layout:z="0"/>
+                      <layout:end layout:x="55" layout:y="0" layout:z="0"/>
+                      <layout:basePoint1 layout:x="20" layout:y="40" layout:z="0"/>
+                      <layout:basePoint2 layout:x="50" layout:y="10" layout:z="0"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+              <layout:speciesReferenceGlyph layout:id="automatic_04_SpeciesReferenceGlyph__ReactionID_expression_of_G2_ProductID_G2" layout:role="substrate" sboTerm="SBO:0000291" layout:speciesGlyph="automatic_04_SpeciesGlyph_EmptySet_ReactionID_expression_of_G2"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_04_SpeciesReferenceGlyph_G1_ReactionID_regulation_of_TF1_ProductID_G2" layout:role="activator" sboTerm="SBO:0000459" layout:speciesGlyph="automatic_04_SpeciesGlyph_G1"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_04_SpeciesReferenceGlyph_G2_ReactionID_expression_of_G2_ProductID_G2" layout:speciesReference="ModifierSpeciesReference_G2_ReactionID_expression_of_G2" layout:role="inhibitor" sboTerm="SBO:0000020" layout:speciesGlyph="automatic_04_SpeciesGlyph_G2"/>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+          <layout:reactionGlyph layout:id="automatic_04_ReactionGlyph_expression_of_G1" sboTerm="SBO:0000589" layout:reaction="expression_of_G1">
+            <layout:boundingBox>
+              <layout:position layout:x="-10" layout:y="-10" layout:z="-1"/>
+              <layout:dimensions layout:width="10" layout:height="10" layout:depth="0"/>
+            </layout:boundingBox>
+            <layout:listOfSpeciesReferenceGlyphs>
+              <layout:speciesReferenceGlyph layout:id="automatic_04_SpeciesReferenceGlyph_Empty_Set_ReactionID_expression_of_G1_ProductID_G1" layout:speciesReference="SpeciesReference_G1_ReactionID_expression_of_G1" layout:role="product" sboTerm="SBO:0000250" layout:speciesGlyph="automatic_04_SpeciesGlyph_G1">
+                <layout:curve>
+                  <layout:listOfCurveSegments>
+                    <layout:curveSegment layout:type="CubicBezier">
+                      <layout:start layout:x="0" layout:y="20" layout:z="0"/>
+                      <layout:end layout:x="-5" layout:y="0" layout:z="0"/>
+                      <layout:basePoint1 layout:x="-40" layout:y="40" layout:z="0"/>
+                      <layout:basePoint2 layout:x="-10" layout:y="10" layout:z="0"/>
+                    </layout:curveSegment>
+                  </layout:listOfCurveSegments>
+                </layout:curve>
+              </layout:speciesReferenceGlyph>
+              <layout:speciesReferenceGlyph layout:id="automatic_04_SpeciesReferenceGlyph__ReactionID_expression_of_G1_ProductID_G1" layout:role="substrate" sboTerm="SBO:0000291" layout:speciesGlyph="automatic_04_SpeciesGlyph_EmptySet_ReactionID_expression_of_G1"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_04_SpeciesReferenceGlyph_G1_ReactionID_expression_of_G1_ProductID_G1" layout:speciesReference="ModifierSpeciesReference_G1_ReactionID_expression_of_G1" layout:role="activator" sboTerm="SBO:0000459" layout:speciesGlyph="automatic_04_SpeciesGlyph_G1"/>
+              <layout:speciesReferenceGlyph layout:id="automatic_04_SpeciesReferenceGlyph_Input_ReactionID_expression_of_G1_ProductID_G1" layout:speciesReference="ModifierSpeciesReference_Input_ReactionID_expression_of_G1" layout:role="activator" sboTerm="SBO:0000405" layout:speciesGlyph="automatic_04_SpeciesGlyph_Input_ReactionID_expression_of_G1"/>
+            </layout:listOfSpeciesReferenceGlyphs>
+          </layout:reactionGlyph>
+        </layout:listOfReactionGlyphs>
+        <layout:listOfTextGlyphs>
+          <layout:textGlyph layout:graphicalObject="automatic_04_SpeciesGlyph_G1" layout:id="automatic_04_TextGlyph_G1" layout:originOfText="G1"/>
+          <layout:textGlyph layout:graphicalObject="automatic_04_SpeciesGlyph_G2" layout:id="automatic_04_TextGlyph_G2" layout:originOfText="G2"/>
+        </layout:listOfTextGlyphs>
+      </layout:layout>
+    </layout:listOfLayouts>
+  </model>
+</sbml>

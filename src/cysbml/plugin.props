@@ -1,0 +1,28 @@
+# This props file would be filled out and included in the plugin jar file.  This props file will be used 
+# to put information into the Plugin Manager about the plugin 
+
+# -- The following properties are REQUIRED -- #
+
+# The plugin name that will be displayed to users
+pluginName=CySBML
+
+# Description used to give users information about the plugin such as what it does.  
+# Html tags are encouraged for formatting purposes.
+pluginDescription=CySBML is a Cytoscape plugin for the import and work with SBML files in Cytoscape providing the visualisation of SBML annotations within the network context.
+
+# Plugin version number, this must be two numbers separated by a decimlal.  Ex. 0.2, 14.03
+pluginVersion=1.29
+
+# Compatible Cytoscape version
+cytoscapeVersion=2.8
+
+pluginCategory=Network generation
+
+projectURL=http://www.charite.de/sysbio/people/koenig/software/cysbml/
+
+# List of authors.  Note each author and institution pair are separated by a : (colon)
+# each additional author institution pair must be separated from other pairs bye a ; (semicolon)
+pluginAuthorsInstitutions=Matthias König:Charite Berlin
+
+releaseDate=November 05, 2013
+
