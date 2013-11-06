@@ -67,6 +67,7 @@ import cysbml.SBMLFilter;
  * @author Matthias Koenig
  * @date 2013-11-04
  *    BUG: if node is not in SBML, "NamedSBase for node not found" information should be displayed;
+ *    BUG: Visual style can not be changed for GRN Style.
  *  
  *	  FIXME:  problems if offline (generate offline mode -> preload all the annotation information
  *    available in the annotation files (offline mode) 
