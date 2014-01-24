@@ -1,2 +1,9 @@
 bin/*
 build/*
+.hg/
+.hgignore
+MiriamWSLib.log
+MiriamWSLibDefault.log
+junit186518804423443330.properties
+junitvmwatcher908155838119150919.properties
+

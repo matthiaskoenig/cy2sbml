@@ -1,7 +1,7 @@
 package cysbml;
 
 /*
- Copyright (c) 2013 Matthias Koenig
+ Copyright (c) 2014 Matthias Koenig
 
  This library is free software; you can redistribute it and/or modify it
  under the terms of the GNU Lesser General Public License as published
@@ -65,7 +65,7 @@ import cysbml.SBMLFilter;
  * matthias.koenig [at] charite.de
  * 
  * @author Matthias Koenig
- * @date 2013-11-04
+ * @date 2014-01-24
  *    BUG: if node is not in SBML, "NamedSBase for node not found" information should be displayed;
  *    BUG: Visual style can not be changed for GRN Style.
  *  
@@ -142,7 +142,7 @@ import cysbml.SBMLFilter;
  */
 public class CySBML extends CytoscapePlugin implements PropertyChangeListener{
 	public static final String NAME = "CySBML"; 
-	public static final String VERSION = "v1.29";
+	public static final String VERSION = "v1.30";
 	public static LogCyPlugin LOGGER = new LogCyPlugin(NAME);
 	
 	public static final boolean DEBUG = true;
