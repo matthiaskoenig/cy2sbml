@@ -55,11 +55,11 @@
 
 	<target name="compile" depends="init" description="compile the source " >
 	    <!-- Compile the java code from ${src} into ${build} -->
-	    <javac srcdir="${src}" 
+	    <javac target="1.6" source="1.6" srcdir="${src}" 
 	    	   destdir="${build}"
 	    	   includeantruntime="false"
 	    	   classpathref="classpath"/>
-		<javac srcdir="${test}" 
+		<javac target="1.6" source="1.6" srcdir="${test}" 
 			   destdir="${build}"
 			   includeantruntime="false"
 			   classpathref="classpath"/>
