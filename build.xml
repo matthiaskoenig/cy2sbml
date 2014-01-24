@@ -5,8 +5,7 @@
     </description>
   	
 	<!-- set global properties for this build -->
-	<!-- <property name="cytoLibDir" value="C:\Users\mkoenig\Desktop\Cytoscape_2\cytoscape-2.8.3"/> -->
-	<property name="cytoLibDir" value="/home/mkoenig/Programs/Cytoscape_2\cytoscape-2.8.3"/>
+	<property name="cytoLibDir" value="${user.home}/Programs/Cytoscape_2/cytoscape-2.8.3"/>
 	<property name="name" value="CySBML"/>
     <property name="version" value="v1.30"/>
     <property name="lib" value="lib"/>	        	
@@ -14,6 +13,8 @@
 	<property name="test" location="test"/>
 	<property name="build" location="build"/>
 	<property name="dist"  location="dist"/>
+	
+	<echo message="The Cytoscape library dir is: ${toString:cytoLibDir}" />
 	
 	 <path id="classpath">
 	   <fileset dir="${lib}">
@@ -28,11 +29,13 @@
 	     <include name="slf4j-jdk14-1.6.6.jar"/>
 	   </fileset>
 	   <fileset dir="${cytoLibDir}">
-	   	   <include name="/**/*.jar"/>
-		   <exclude name="/**/*sbml*"/>
-		   <exclude name="/**/*SBML*"/>
+	   	   <include name="**/*.jar"/>
+		   <exclude name="**/*sbml*"/>
+		   <exclude name="**/*SBML*"/>
 	   </fileset>
 	 </path>
+	
+	<echo message="My classpath is ${toString:classpath}" />
 	
 	 <path id="buildpath">
 	 	<pathelement location="${build}" /> 
