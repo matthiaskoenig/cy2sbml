@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import cysbml.tools.DataStructures;
 import cytoscape.Cytoscape;
 import cytoscape.task.ui.JTaskConfig;
 import cytoscape.task.util.TaskManager;
@@ -67,7 +66,7 @@ public class SearchBioModel {
 	}
 	
 	private LinkedHashMap<String, SimpleModel> getSimpleModelsForSearchResult(List<String> idsList){
-		String[] ids = DataStructures.convertListToArray(idsList);
+		String[] ids = (String[]) idsList.toArray();
 		return bmInterface.getSimpleModelsByIds(ids);
 	}
 	

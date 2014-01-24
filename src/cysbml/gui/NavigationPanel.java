@@ -45,7 +45,7 @@ import cytoscape.view.CytoscapeDesktop;
 import cytoscape.view.cytopanels.CytoPanel;
 import cytoscape.view.cytopanels.CytoPanelState;
 
-import cysbml.CySBMLPlugin;
+import cysbml.CySBML;
 import cysbml.cytoscape.CytoscapeWrapper;
 import cysbml.mapping.NamedSBaseToNodeMapping;
 import cysbml.mapping.NavigationTree;
@@ -198,17 +198,19 @@ public class NavigationPanel extends JPanel implements TreeSelectionListener,
 	
 	public void putSBMLDocument(String networkName, SBMLDocument document, CyNetwork network){
 		NamedSBaseToNodeMapping mapping = new NamedSBaseToNodeMapping(network);
-		sbmlDocuments.putDocument(networkName, document, mapping);
-		updateNavigationTree();
+		putSBMLDocument(networkName, document, mapping);
 	}
 	public void putSBMLDocumentForLayout(String networkName, SBMLDocument document, CyNetwork network, Layout layout){
 		NamedSBaseToNodeMapping mapping = new NamedSBaseToNodeMapping(layout);
-		sbmlDocuments.putDocument(networkName, document, mapping);
-		updateNavigationTree();
+		putSBMLDocument(networkName, document, mapping);
 	}
 	public void putSBMLDocumentForGRN(String networkName, SBMLDocument document, CyNetwork network){
 		NamedSBaseToNodeMapping mapping = new NamedSBaseToNodeMapping(network);
-		sbmlDocuments.putDocument(networkName, document, mapping);
+		putSBMLDocument(networkName, document, mapping);
+	}
+	private void putSBMLDocument(String networkName, SBMLDocument doc, NamedSBaseToNodeMapping mapping){
+		sbmlDocuments.putDocument(networkName, doc, mapping);
+		this.activate();
 		updateNavigationTree();
 	}
 	
@@ -235,9 +237,9 @@ public class NavigationPanel extends JPanel implements TreeSelectionListener,
 	
     public void activate(){
 		CytoPanel cytoPanel = Cytoscape.getDesktop().getCytoPanel(SwingConstants.EAST);
-		int index = cytoPanel.indexOfComponent(CySBMLPlugin.NAME);
+		int index = cytoPanel.indexOfComponent(CySBML.NAME);
 		if (index == -1){
-			cytoPanel.add(CySBMLPlugin.NAME, this);
+			cytoPanel.add(CySBML.NAME, this);
 			cytoPanel.setState(CytoPanelState.DOCK);
 		}
 		selectNavigationPanel();
@@ -246,7 +248,7 @@ public class NavigationPanel extends JPanel implements TreeSelectionListener,
 	
 	public void deactivate(){
 		CytoPanel cytoPanel = Cytoscape.getDesktop().getCytoPanel(SwingConstants.EAST);
-		int index = cytoPanel.indexOfComponent(CySBMLPlugin.NAME);
+		int index = cytoPanel.indexOfComponent(CySBML.NAME);
 		if (index != -1){
 			cytoPanel.remove(index);
 		}
@@ -264,7 +266,7 @@ public class NavigationPanel extends JPanel implements TreeSelectionListener,
 	
 	public static void selectNavigationPanel(){
 		CytoPanel cytoPanel = Cytoscape.getDesktop().getCytoPanel(SwingConstants.EAST);
-		cytoPanel.setSelectedIndex(cytoPanel.indexOfComponent(CySBMLPlugin.NAME));
+		cytoPanel.setSelectedIndex(cytoPanel.indexOfComponent(CySBML.NAME));
 	}
 
 	public void setText(String text){

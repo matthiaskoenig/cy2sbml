@@ -13,8 +13,8 @@ import org.sbml.jsbml.Species;
 import org.sbml.jsbml.ext.qual.QualitativeSpecies;
 import org.sbml.jsbml.ext.qual.Transition;
 
+import cysbml.CySBML;
 import cysbml.biomodel.BioModelGUIText;
-import cysbml.logging.LogCySBML;
 import uk.ac.ebi.miriam.lib.MiriamLink;
 
 /** Gets information from the MIRIAM webresources.
@@ -36,11 +36,12 @@ import uk.ac.ebi.miriam.lib.MiriamLink;
  
 /** Creating information for the SBML objects which were selected. 
  * TODO: bug if nodes are selected with no correspondence in the SBML.
+ * 
+ * TODO: get the additional information from KEGG, ...
  * The SBML information has to be changed to empty. 
  * 
  */
 public class NamedSBaseInfoFactory {
-	private static final String MIRIAM_URL = "http://www.ebi.ac.uk/miriamws/main/MiriamWebServices";
 	
 	AbstractNamedSBase sbmlObject;
 	String info = ""; 
@@ -57,7 +58,7 @@ public class NamedSBaseInfoFactory {
 		
 		// Creation of the link to the Web Services
 		link = new MiriamLink();
-		link.setAddress(MIRIAM_URL);
+		link.setAddress(MiriamWSInterface.MIRIAM_URL);
 	}
 	
 	public String getInfo() {
@@ -156,13 +157,11 @@ public class NamedSBaseInfoFactory {
   		return text;
 	}
 	
-
-	
-
 	/** Get additional image information for the database and identifier.
 	 * TODO: This has to be done offline and in the background (images have to be cashed) !
 	 * TODO: Create background database of information.  
 	 */
+	@SuppressWarnings("unused")
 	@Deprecated
 	private String getAdditionalInformation(String r){
 		Map<String, String> map = getKeyAndId(r);
@@ -180,7 +179,7 @@ public class NamedSBaseInfoFactory {
 				text += "<img src=\"http://www.ebi.ac.uk/chebi/displayImage.do?defaultImage=true&imageIndex=0&chebiId="+cid+"&dimensions=160\"></img>";
 			} catch (Exception e){
 				//e.printStackTrace();
-				LogCySBML.warning("obo.chebi image not available");
+				CySBML.LOGGER.warning("obo.chebi image not available");
 			}
 		
 		// Add kegg info
@@ -191,7 +190,7 @@ public class NamedSBaseInfoFactory {
 				text += "<img src=\""+imgsrc+"\"></img>";
 			} catch (Exception e){
 				//e.printStackTrace();
-				LogCySBML.warning("kegg.compound image not available");
+				CySBML.LOGGER.warning("kegg.compound image not available");
 			}
 		
 		// TODO resize image and use KEGG

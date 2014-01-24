@@ -1,0 +1,9 @@
+model *minimal_1()
+compartment c1;
+
+species s1 in c1;
+species s2 in c1;
+
+r1: s1 -> s2;
+
+end

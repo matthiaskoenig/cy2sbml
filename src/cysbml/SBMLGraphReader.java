@@ -39,10 +39,9 @@ import java.net.URL;
 import java.util.*;
 import java.io.InputStream;
 import java.io.FileInputStream;
-
 import javax.xml.stream.XMLStreamException;
 
-import org.sbml.jsbml.AbstractNamedSBase;
+import org.apache.commons.lang.ArrayUtils;
 import org.sbml.jsbml.KineticLaw;
 import org.sbml.jsbml.ListOf;
 import org.sbml.jsbml.LocalParameter;
@@ -71,20 +70,15 @@ import cytoscape.data.readers.AbstractGraphReader;
 import cytoscape.data.readers.GraphReader;
 import cytoscape.layout.CyLayoutAlgorithm;
 import cytoscape.layout.CyLayouts;
-import cytoscape.layout.algorithms.GridNodeLayout;
 import cytoscape.view.CyDesktopManager;
 import cytoscape.view.CyNetworkView;
 
-import browser.AttributeBrowser;
-import browser.AttributeBrowserPlugin;
-
 import cysbml.grn.GRNGraphReader;
 import cysbml.grn.GeneRegulatoryNetwork;
-import cysbml.grn.NetworkTransformationFactory;
 import cysbml.gui.NavigationPanel;
 import cysbml.layout.LayoutExtension;
-import cysbml.logging.LogCySBML;
 import cysbml.miriam.NamedSBaseInfoThread;
+import cysbml.tools.AttributeUtils;
 import cysbml.visual.VisualStyleManager;
 import cysbml.visual.VisualStyleManager.CustomStyle;
 
@@ -146,7 +140,36 @@ public class SBMLGraphReader extends AbstractGraphReader implements GraphReader 
 		sbmlStream = stream;
 	}
 	
+	@Override
+	public int[] getNodeIndicesArray() {
+		Integer[] ids = nodeIds.toArray(new Integer[nodeIds.size()]);
+		return ArrayUtils.toPrimitive(ids); 
+	}
+
+	@Override
+	public int[] getEdgeIndicesArray() {
+		Integer[] ids = edgeIds.toArray(new Integer[edgeIds.size()]);
+		return ArrayUtils.toPrimitive(ids); 
+	}
+	
+	@Override
+	public CyLayoutAlgorithm getLayoutAlgorithm() {
+		CyLayoutAlgorithm algorithm = CyLayouts.getDefaultLayout();
+		if (nodeIds.size() > LAYOUT_NODE_NUMBER){
+			CySBML.LOGGER.info(String.format("More than %d nodes, no layout applied.", LAYOUT_NODE_NUMBER));
+		} else { 
+			algorithm = CyLayouts.getLayout("force-directed");
+		}
+		return algorithm;
+	}
+	
+	@Override
+	public String getNetworkName(){
+		return networkName;
+	}
+	
 	/** Reading the SBML and creating cytoscape network. */
+	@Override
 	public void read() throws IOException {		
 		InputStream instream;
 		if ((fileURL == null) && (fileName != null))
@@ -175,13 +198,11 @@ public class SBMLGraphReader extends AbstractGraphReader implements GraphReader 
 	private String getAvailableNetworkName(String modelId){
 		String name = modelId;
 		boolean exists = existsNetwork(name);
-		
 		int count = 1;
 		while (exists == false){
 			name = modelId + "_" + count;
 			exists = existsNetwork(name); 
 			count++;
-					
 			}
 		return name;
 	}
@@ -191,8 +212,7 @@ public class SBMLGraphReader extends AbstractGraphReader implements GraphReader 
 	}
 	
 	/** Read the SBML model information to create the Cytoscape Graph.
-	 * Additional information is stored as Node and Edge Attributes.
-	 */
+	 * Additional information is stored as Node and Edge Attributes.*/
 	public void createCytoscapeGraphFromSBMLDocument(){
 		
 		Model model = document.getModel();
@@ -260,6 +280,10 @@ public class SBMLGraphReader extends AbstractGraphReader implements GraphReader 
 			}
 			if (species.isSetMetaId()){
 				nodeAttributes.setAttribute(id, CySBMLConstants.ATT_METAID, species.getMetaId());
+			}
+			if (species.isSetHasOnlySubstanceUnits()){
+				nodeAttributes.setAttribute(id, CySBMLConstants.ATT_HAS_ONLY_SUBSTANCE_UNITS, 
+						new Boolean(species.getHasOnlySubstanceUnits()));
 			}
 			nodeIds.add(node.getRootGraphIndex());
 		}
@@ -481,46 +505,19 @@ public class SBMLGraphReader extends AbstractGraphReader implements GraphReader 
 	 *  - selects the important SBML attributes in the data browser
 	 */  
 	public void doPostProcessing(CyNetwork network) {
-		// [1] Apply Layout
-		applyLayoutFromAlgorithm();
-		// [2] Set Visual Style
+		// Apply Layout
+		// applyLayout(network);
+		// Set Visual Style
 		VisualStyleManager.setVisualStyleForNetwork(network, CustomStyle.DEFAULT_STYLE);
-		// [3] Select SBML Attributes in Data Panel
-		selectTableAttributes();
-		// [4] Update the CySBML Navigator
+		// Select SBML Attributes in Data Panel
+		selectSBMLTableAttributes();
+		// Update the CySBML Navigator
 		updateNavigationPanel(network);
-		
-		// [5] Generate additional networks
-		if (GeneRegulatoryNetwork.isSBMLDocumentGRN(document)){
-			// Create the GRN networks
-			try {
-				Cytoscape.createNetwork(
-					new GRNGraphReader(document, network), true, null);
-			} catch (Exception e){
-				LogCySBML.error("Error generating SBML GRN network");
-				e.printStackTrace();
-			}
-		}
-						
-		// [6] Create Additional Networks for all Layouts
-		if (LayoutExtension.existLayoutInSBMLDocument(document)){
-			LogCySBML.info("Create additional networks for layouts.");
-			ListOf<Layout> layoutList = LayoutExtension.getLayoutsInSBMLDocument(document);
-			for (int k=0; k<layoutList.size(); ++k){
-				Layout layout = layoutList.get(k);
-				
-				// Create the layout networks
-				try {
-					Cytoscape.createNetwork(
-						new SBMLLayoutGraphReader(document, network, layout), true, null);
-				} catch (Exception e){
-					LogCySBML.error("Error generating SBML Layout networks");
-					e.printStackTrace();
-				}
-			}
-		}
-		
-		// [7] Preload the SBML information from the Web Sources in Cash
+		// Generate additional networks
+		generateGRN(network);
+		generateLayoutNetworks(network);
+
+		// Preload SBML WebService information
 		NamedSBaseInfoThread.preloadAnnotationInformationForModel(document.getModel());
 		
 		// [8] Arrange Windows and fit views
@@ -528,76 +525,67 @@ public class SBMLGraphReader extends AbstractGraphReader implements GraphReader 
 		for(CyNetworkView view: Cytoscape.getNetworkViewMap().values()){
 			view.fitContent();
 		}
+		
 	}
 	
-
-	public String getNetworkName(){
-		return this.networkName;
-	}
-	
-	/** Update the CySBMLNavigationPanel with the given SBMLDocument. */
-	public void updateNavigationPanel(CyNetwork network){
+	protected void updateNavigationPanel(CyNetwork network){
 		NavigationPanel panel = NavigationPanel.getInstance();
-		panel.activate();
-		panel.putSBMLDocument(getNetworkName(), document, network);
+		panel.putSBMLDocument(network.getIdentifier(), document, network);
 	}
-			
-	/** Applies Layout Algorithm to network. */
-	public void applyLayoutFromAlgorithm() {
+	
+	private void generateGRN(CyNetwork network){
+		if (GeneRegulatoryNetwork.isSBMLDocumentGRN(document)){
+			try {
+				Cytoscape.createNetwork(new GRNGraphReader(document, network), true, null);
+			} catch (Exception e){
+				CySBML.LOGGER.error("Error generating SBML GRN network");
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void generateLayoutNetworks(CyNetwork network){
+		if (LayoutExtension.existLayoutInSBMLDocument(document)){
+			CySBML.LOGGER.info("Create additional networks for layouts.");
+			ListOf<Layout> layoutList = LayoutExtension.getLayoutsInSBMLDocument(document);
+			for (int k=0; k<layoutList.size(); ++k){
+				Layout layout = layoutList.get(k);
+				// Create the layout networks
+				try {
+					Cytoscape.createNetwork(
+						new SBMLLayoutGraphReader(document, network, layout), true, null);
+				} catch (Exception e){
+					CySBML.LOGGER.error("Error generating SBML Layout networks");
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	/** Applies force-directed layout to the network. */
+	protected void applyLayout(CyNetwork network) {
 		if (nodeIds.size() > LAYOUT_NODE_NUMBER){
-			LogCySBML.info(String.format("More than %d nodes, no layout applied.", LAYOUT_NODE_NUMBER));
+			CySBML.LOGGER.info(String.format("More than %d nodes, no layout applied.", LAYOUT_NODE_NUMBER));
 		} else { 
 			CyLayoutAlgorithm layout = CyLayouts.getLayout("force-directed");
-			if (layout == null){
-				layout = new GridNodeLayout();
-			}
-			Cytoscape.getCurrentNetworkView().applyLayout(layout);
+			CyNetworkView view = Cytoscape.getNetworkView(network.getIdentifier());
+			view.applyLayout(layout);
 		}
 	}
 	
-
-	/** Selects Node and Edge Attributes in the Attribute Table Viewer. */
-	private void selectTableAttributes(){
-		// selected node attributes
-		AttributeBrowser nodeAttributeBrowser = AttributeBrowserPlugin.getAttributeBrowser(browser.DataObjectType.NODES);
-		List<String> nodeAttrSelected = new LinkedList<String>();
-		nodeAttrSelected.add(CySBMLConstants.ATT_TYPE);
-		nodeAttrSelected.add(CySBMLConstants.ATT_NAME);
-		nodeAttrSelected.add(CySBMLConstants.ATT_COMPARTMENT);
-		nodeAttrSelected.add(CySBMLConstants.ATT_METAID);
-		nodeAttrSelected.add(CySBMLConstants.ATT_SBOTERM);
-		nodeAttributeBrowser.setSelectedAttributes(nodeAttrSelected);
+	private void selectSBMLTableAttributes(){
+		String[] nAtts = {CySBMLConstants.ATT_TYPE,
+						  CySBMLConstants.ATT_NAME,
+						  CySBMLConstants.ATT_COMPARTMENT,
+						  CySBMLConstants.ATT_METAID,
+						  CySBMLConstants.ATT_SBOTERM};
 		
-		// selected edge attributes
-		AttributeBrowser edgeAttributeBrowser = AttributeBrowserPlugin.getAttributeBrowser(browser.DataObjectType.EDGES);
-		List<String> edgeAttrSelected = new LinkedList<String>();
-		edgeAttrSelected.add(Semantics.INTERACTION);
-		edgeAttrSelected.add(CySBMLConstants.ATT_STOICHIOMETRY);
-		edgeAttrSelected.add(CySBMLConstants.ATT_METAID);
-		edgeAttrSelected.add(CySBMLConstants.ATT_SBOTERM);
-		edgeAttributeBrowser.setSelectedAttributes(edgeAttrSelected);
+		String[] eAtts = {Semantics.INTERACTION,
+						  CySBMLConstants.ATT_STOICHIOMETRY,
+						  CySBMLConstants.ATT_METAID,
+						  CySBMLConstants.ATT_SBOTERM};
+		AttributeUtils.selectTableAttributes(Arrays.asList(nAtts), Arrays.asList(eAtts));
 	}
 	
-	/** Get a set of ids */
-	public static List<String> getSetOfIds(ListOf<? extends AbstractNamedSBase> items){
-		List<String> res = new LinkedList<String>();
-		for (int k=0; k<items.size(); ++k){
-			res.add(items.get(k).getId());
-		}
-		return res;
-	}
-	
-	public int[] getNodeIndicesArray() {
-		int[] nodes = new int[nodeIds.size()];
-		for (int i = 0; i < nodes.length; i++)
-			nodes[i] = nodeIds.get(i).intValue();
-		return nodes;
-	}
 
-	public int[] getEdgeIndicesArray() {
-		int[] edges = new int[edgeIds.size()];
-		for (int i = 0; i < edges.length; i++)
-			edges[i] = edgeIds.get(i).intValue();
-		return edges;
-	}
 }

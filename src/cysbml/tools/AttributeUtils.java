@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import browser.AttributeBrowser;
+import browser.AttributeBrowserPlugin;
+
 import cytoscape.CyNode;
 import cytoscape.Cytoscape;
 import cytoscape.data.CyAttributes;
@@ -26,5 +29,17 @@ public class AttributeUtils {
 			}
 		}
 		return valueSet;
+	}
+	
+	
+	/** Selects Node and Edge Attributes in the Attribute Table Viewer. */
+	public static void selectTableAttributes(List<String> nAtts, List<String> eAtts){
+		// selected node attributes
+		AttributeBrowser nodeAttributeBrowser = AttributeBrowserPlugin.getAttributeBrowser(browser.DataObjectType.NODES);
+		nodeAttributeBrowser.setSelectedAttributes(nAtts);
+		
+		// selected edge attributes
+		AttributeBrowser edgeAttributeBrowser = AttributeBrowserPlugin.getAttributeBrowser(browser.DataObjectType.EDGES);
+		edgeAttributeBrowser.setSelectedAttributes(eAtts);
 	}
 }

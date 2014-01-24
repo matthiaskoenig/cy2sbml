@@ -16,9 +16,8 @@ import cytoscape.visual.VisualPropertyType;
 import cytoscape.visual.VisualStyle;
 import cytoscape.visual.calculators.Calculator;
 
-import cysbml.logging.LogCySBML;
 import cysbml.visual.VisualStyleManager.CustomStyle;
-
+import cysbml.CySBML;
 
 /** The parent class of all styles. */
 public abstract class StyleGeneric {
@@ -57,7 +56,7 @@ public abstract class StyleGeneric {
 	private VisualStyle createVisualStyle(CustomStyle style, Collection<Calculator> nodeAppearanceCalculators,
 			Collection<Calculator> edgeAppearanceCalculators) {
 		String name = style.toString();
-		LogCySBML.config("createVisualStyle( " + name + " )");
+		CySBML.LOGGER.config("createVisualStyle( " + name + " )");
 		VisualStyle vs = new VisualStyle(name);
 		VisualPropertyDependency deps = createVisualPropertyDependencies(vs);
 		

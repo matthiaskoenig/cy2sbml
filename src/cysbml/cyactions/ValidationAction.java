@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 import org.sbml.jsbml.SBMLDocument;
 
-import cysbml.CySBMLPlugin;
+import cysbml.CySBML;
 import cysbml.gui.NavigationPanel;
 import cysbml.gui.ValidationDialog;
 import cytoscape.Cytoscape;
@@ -17,11 +17,11 @@ import cytoscape.util.CytoscapeAction;
 
 @SuppressWarnings("serial")
 public class ValidationAction extends CytoscapeAction {
-    public ValidationAction() {super(CySBMLPlugin.NAME + " Validator");}
+    public ValidationAction() {super(CySBML.NAME + " Validator");}
     
-	public ValidationAction(ImageIcon icon, CySBMLPlugin plugin) {
+	public ValidationAction(ImageIcon icon, CySBML plugin) {
 		super("", icon);
-		this.putValue(Action.SHORT_DESCRIPTION, CySBMLPlugin.NAME + " Validator");
+		this.putValue(Action.SHORT_DESCRIPTION, CySBML.NAME + " Validator");
 	}
  
     public void actionPerformed(ActionEvent ae) {

@@ -7,7 +7,7 @@ import java.net.URL;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 
-import cysbml.CySBMLPlugin;
+import cysbml.CySBML;
 import cytoscape.util.CytoscapeAction;
 import cytoscape.util.OpenBrowser;
 
@@ -17,11 +17,11 @@ public class HelpAction extends CytoscapeAction {
 	public static final String HELP_URL = "http://www.charite.de/sysbio/people/koenig/software/cysbml/index.html";
 	
 	
-    public HelpAction() {super(CySBMLPlugin.NAME + "Help");}
+    public HelpAction() {super(CySBML.NAME + "Help");}
     
-	public HelpAction(ImageIcon icon, CySBMLPlugin plugin) {
+	public HelpAction(ImageIcon icon, CySBML plugin) {
 		super("", icon);
-		this.putValue(Action.SHORT_DESCRIPTION, CySBMLPlugin.NAME + " Help");
+		this.putValue(Action.SHORT_DESCRIPTION, CySBML.NAME + " Help");
 	}
     
     /** This method is called when the user selects the menu item.*/

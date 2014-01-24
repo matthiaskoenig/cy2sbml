@@ -7,12 +7,11 @@ import cytoscape.visual.CalculatorCatalog;
 import cytoscape.visual.VisualMappingManager;
 import cytoscape.visual.VisualStyle;
 
-import cysbml.CySBMLPlugin;
+import cysbml.CySBML;
 import cysbml.visual.style.StyleDefault;
 import cysbml.visual.style.StyleGRN;
 import cysbml.visual.style.StyleGeneric;
 import cysbml.visual.style.StyleLayout;
-import cysbml.logging.LogCySBML;
 
 
 /** Manage the Cytoscape Visual Styles associated with CySBML. */
@@ -20,9 +19,9 @@ public class VisualStyleManager {
 	
 	/** Visual Styles defined for CySBML. */
 	public enum CustomStyle {
-		 DEFAULT_STYLE(CySBMLPlugin.NAME),
-		 LAYOUT_STYLE(CySBMLPlugin.NAME + "-Layout"),
-		 GRN_STYLE(CySBMLPlugin.NAME + "-GRN");
+		 DEFAULT_STYLE(CySBML.NAME),
+		 LAYOUT_STYLE(CySBML.NAME + "-Layout"),
+		 GRN_STYLE(CySBML.NAME + "-GRN");
 		 
 		 private String name;
 		 private CustomStyle(String n) {
@@ -46,7 +45,7 @@ public class VisualStyleManager {
 				styleGen = new StyleGRN(style);
 				break;
 			default:
-				LogCySBML.error("VisualStyle not supported by VisualStyleFactory -> " + style.toString());
+				CySBML.LOGGER.error("VisualStyle not supported by VisualStyleFactory -> " + style.toString());
 				return null;
 		}
 		return styleGen.createVisualStyle(); 

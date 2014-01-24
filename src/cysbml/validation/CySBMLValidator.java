@@ -16,7 +16,7 @@ import org.sbml.jsbml.SBMLException;
 import org.sbml.jsbml.SBMLWriter;
 import org.sbml.jsbml.validator.SBMLValidator;
 
-import cysbml.CySBMLPlugin;
+import cysbml.CySBML;
 
 public class CySBMLValidator {
 	public final static String SEVERITY_INFO = "Info";
@@ -69,9 +69,9 @@ public class CySBMLValidator {
 		SBMLErrorLog eLog = null;
 		try {
 		    // Write SBML to temp file for validation
-		    File temp = File.createTempFile(CySBMLPlugin.NAME, ".tmp");
+		    File temp = File.createTempFile(CySBML.NAME, ".tmp");
 		    temp.deleteOnExit();
-		    SBMLWriter.write(doc, temp, CySBMLPlugin.NAME, CySBMLPlugin.VERSION, ' ' , (short) 2);
+		    SBMLWriter.write(doc, temp, CySBML.NAME, CySBML.VERSION, ' ' , (short) 2);
 			eLog = SBMLValidator.checkConsistency(temp.getAbsolutePath(), new HashMap<String, String>());
 		} catch (IOException e) {
 			e.printStackTrace();

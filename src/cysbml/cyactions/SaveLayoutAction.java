@@ -6,18 +6,18 @@ import java.io.File;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 
-import cysbml.CySBMLPlugin;
+import cysbml.CySBML;
 import cysbml.layout.CytoscapeLayoutTools;
 import cytoscape.util.CytoscapeAction;
 import cytoscape.util.FileUtil;
 
 @SuppressWarnings("serial")
 public class SaveLayoutAction extends CytoscapeAction {
-    public SaveLayoutAction() {super(CySBMLPlugin.NAME + " Save Layout");}
+    public SaveLayoutAction() {super(CySBML.NAME + " Save Layout");}
     
-	public SaveLayoutAction(ImageIcon icon, CySBMLPlugin plugin) {
+	public SaveLayoutAction(ImageIcon icon, CySBML plugin) {
 		super("", icon);
-		this.putValue(Action.SHORT_DESCRIPTION, CySBMLPlugin.NAME + " Save Layout");
+		this.putValue(Action.SHORT_DESCRIPTION, CySBML.NAME + " Save Layout");
 	}
     
     public void actionPerformed(ActionEvent ae) {

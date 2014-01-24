@@ -24,14 +24,12 @@ import org.sbml.jsbml.ext.qual.QualitativeModel;
 import org.sbml.jsbml.ext.qual.QualitativeSpecies;
 import org.sbml.jsbml.ext.qual.Transition;
 
+import cysbml.CySBML;
 import cytoscape.CyNetwork;
 import cytoscape.CyNode;
 import cytoscape.Cytoscape;
 import cytoscape.data.CyAttributes;
 import cytoscape.view.CyNetworkView;
-
-import cysbml.logging.LogCySBML;
-
 
 /** Gets the information for the Layout positions and boundary boxes.
  * - Compartment information is ignored.
@@ -163,16 +161,7 @@ public class NetworkLayout {
 		}
 		return box;
 	}
-	
-	/* TODO: why does this still exist ? */
-	@SuppressWarnings("unused")
-	@Deprecated
-	private static void setMissingBoundaryBoxInformation(Collection<BoundingBox> boxes){
-		for (BoundingBox box: boxes){
-			setMissingBoundaryBoxInformation(box);
-		}
-	}
-	
+		
 	private static void setMissingBoundaryBoxInformation(BoundingBox box) {
 		Dimensions dim;
 		Point point;
@@ -408,10 +397,11 @@ public class NetworkLayout {
         	<layout:position layout:x="60" layout:y="0" layout:z="-1"/>
             <layout:dimensions layout:width="40" layout:height="40" layout:depth="-1"/>
         </layout:boundingBox>
-        FIXME: find solution to handle z-index;
+       No control over z-index possible in Cytoscape.
 	 */
+	@Deprecated
 	public void applyZIndexToLayoutNetwork(CyNetwork network){
-	    LogCySBML.warning("Z-index in Layout not supported by Cytoscape");
+	    CySBML.LOGGER.warning("Z-index in Layout not supported by Cytoscape");
 	}
 	
 	

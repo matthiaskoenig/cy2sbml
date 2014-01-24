@@ -6,9 +6,10 @@ import net.sf.ehcache.Element;
 
 import org.apache.commons.lang.StringUtils;
 
+import cysbml.CySBML;
+
 import uk.ac.ebi.miriam.lib.MiriamLink;
 
-import cysbml.logging.LogCySBML;
 
 /** These objects are hashed. */
 public class MiriamResourceInfo {
@@ -69,16 +70,16 @@ public class MiriamResourceInfo {
 		Element element = miriamCache.get(resourceURI);
 		if (element != null){
 			locations = (String[]) element.getObjectValue();
-			LogCySBML.info("cached: " + resourceURI);
+			CySBML.LOGGER.info("cached: " + resourceURI);
 		} else {
 			locations = link.getLocations(resourceURI);
 			if (locations != null){
 				// update the cache
 				element = new Element(resourceURI, locations);
 				miriamCache.put(element);
-				LogCySBML.info("miriamCache added: " + resourceURI);
+				CySBML.LOGGER.info("miriamCache added: " + resourceURI);
 			} else {
-				LogCySBML.warning("Miriam locations could not be retrieved: " + resourceURI);
+				CySBML.LOGGER.warning("Miriam locations could not be retrieved: " + resourceURI);
 			}
 		}
 		return locations; 

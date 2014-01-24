@@ -47,13 +47,13 @@ import org.sbml.jsbml.SBMLDocument;
 
 import cysbml.gui.NavigationPanel;
 import cysbml.CySBMLConstants;
-import cysbml.CySBMLPlugin;
+import cysbml.CySBML;
 
 public class CySBMLExample extends CytoscapePlugin {
-	public final String NAME = CySBMLPlugin.NAME + "Example";
+	public final String NAME = CySBML.NAME + "Example";
 	
 	public CySBMLExample() {
-		System.out.println(NAME + "[INFO]->" + NAME + "-" + CySBMLPlugin.VERSION);
+		System.out.println(NAME + "[INFO]->" + NAME + "-" + CySBML.VERSION);
 		Example1Action action1 = new Example1Action();
 		action1.setPreferredMenu("Plugins");
 		Cytoscape.getDesktop().getCyMenus().addAction(action1);

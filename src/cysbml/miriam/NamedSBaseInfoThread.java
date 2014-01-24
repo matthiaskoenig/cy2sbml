@@ -9,8 +9,8 @@ import javax.swing.JEditorPane;
 import org.sbml.jsbml.ListOf;
 import org.sbml.jsbml.Model;
 
+import cysbml.CySBML;
 import cysbml.gui.NavigationPanel;
-import cysbml.logging.LogCySBML;
 
 /** Generates information for from web resources in separate Thread. */
 public class NamedSBaseInfoThread extends Thread{
@@ -54,11 +54,11 @@ public class NamedSBaseInfoThread extends Thread{
     
 	/** Reads the annotation information in the Miriam Cash */
 	public static void preloadAnnotationInformationForModel(Model model){
-		LogCySBML.info("Preload Miriam for compartments");
+		CySBML.LOGGER.info("Preload Miriam for compartments");
 		preloadAnnotationForListOf(model.getListOfCompartments());
-		LogCySBML.info("Preload Miriam for species");
+		CySBML.LOGGER.info("Preload Miriam for species");
 		preloadAnnotationForListOf(model.getListOfSpecies());
-		LogCySBML.info("Preload Miriam for reactions");
+		CySBML.LOGGER.info("Preload Miriam for reactions");
 		preloadAnnotationForListOf(model.getListOfReactions());
 	}
 	

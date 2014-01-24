@@ -378,8 +378,5 @@ public class SBMLLayoutGraphReader extends SBMLGraphReader implements GraphReade
 		NetworkLayout networkLayout = new NetworkLayout(document, layout);
 		networkLayout.setNetworkAttributesFromBoundingBoxes(network);
 		networkLayout.applyLayoutPositionsToLayoutNetwork(network);
-		
-		// handle the z-index information
-		networkLayout.applyZIndexToLayoutNetwork(network);
 	}
 }

@@ -5,30 +5,65 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 public class LogCyPlugin {
-	static String name = "CyPlugin";
+	private String name;
+	private static final String line = "---------------------------------------";
 	
-	enum PrintLevels {
-		CONFIG, INFO, WARNING, ERROR;
+	private enum PrintLevels {
+		CONFIG, INFO, WARNING, ERROR, TEST;
 	}
 	
-	public static void config(String text){
-		printLevel(System.out, PrintLevels.CONFIG, text);
+	public LogCyPlugin(String name){
+		this.name = name;
 	}
 	
-	public static void info(String text){
-		printLevel(System.out, PrintLevels.INFO, text);
+	public String config(String text){
+		return config(text, true);
+	}
+	public String config(String text, boolean output){
+		return printLevel(System.out, PrintLevels.CONFIG, text, output);
 	}
 	
-	public static void warning(String text){
-		printLevel(System.err, PrintLevels.WARNING, text);
+	public String info(String text){
+		return info(text, true);
+	}
+	public String info(String text, boolean output){
+		return printLevel(System.out, PrintLevels.INFO, text, output);
 	}
 	
-	public static void error(String text){
-		printLevel(System.err, PrintLevels.ERROR, text);
+	public String warning(String text){
+		return warning(text, true);
+	}
+	public String warning(String text, boolean output){
+		return printLevel(System.err, PrintLevels.WARNING, text, output);
 	}
 	
-	private static void printLevel(PrintStream stream, PrintLevels level, String text){
-		stream.println(String.format("%s[%s]-> %s", name, level.toString(), text));
+	public String error(String text){
+		return error(text, true);
+	}
+	public String error(String text, boolean output){
+		return printLevel(System.err, PrintLevels.ERROR, text, output);
+	}
+	
+	public String test(String text){
+		return test(text, true);
+	}
+	public String test(String text, boolean output){
+		return printLevel(System.out, PrintLevels.TEST, text, output);
+	}
+	
+	private String printLevel(PrintStream stream, PrintLevels level, String text, boolean output){
+		String out = String.format("%s[%s]: %s", name, level.toString(), text);
+		if (output){
+			if (level == PrintLevels.TEST){
+				stream.println(line);
+				stream.println(out);
+				stream.println(line);
+			}else {
+				stream.println(out);	
+			}
+			
+		}
+		return out;
 	}
 	
 	/* Function to log StackTraces */

@@ -23,7 +23,7 @@ import org.sbml.jsbml.ext.layout.ReactionGlyph;
 import org.sbml.jsbml.ext.layout.SpeciesGlyph;
 
 import cysbml.CySBMLConstants;
-import cysbml.CySBMLPlugin;
+import cysbml.CySBML;
 import cysbml.gui.NavigationPanel;
 import cytoscape.CyNetwork;
 import cytoscape.CyNode;
@@ -102,7 +102,7 @@ public class CytoscapeLayoutTools {
 		SBMLDocument doc = writeLayoutOfNetworkViewToSBMLDocument(view);
 		if (doc != null){
 			try {
-				SBMLWriter.write(doc, file, CySBMLPlugin.NAME, CySBMLPlugin.VERSION);
+				SBMLWriter.write(doc, file, CySBML.NAME, CySBML.VERSION);
 				
 			} catch (SBMLException e) {
 				e.printStackTrace();

@@ -6,15 +6,12 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
-import javax.swing.JOptionPane;
 
-import uk.ac.ebi.miriam.lib.MiriamLink;
-
-import cysbml.biomodel.BioModelWSInterface;
-import cysbml.logging.LogCySBML;
-import cytoscape.Cytoscape;
+//import uk.ac.ebi.miriam.lib.MiriamLink;
 import cytoscape.CytoscapeInit;
 import cytoscape.util.ProxyHandler;
+import cysbml.biomodel.BioModelWSInterface;
+import cysbml.miriam.MiriamWSInterface;
 
 public class CySBMLConnection {
 
@@ -55,10 +52,10 @@ public class CySBMLConnection {
 	   				ProxyHandler.PROXY_PORT_PROPERTY_NAME,null);
 		 
 		 boolean internet = testNetConnection (ProxyHandler.getProxyServer(), 2000);;
-		 boolean miriam = testMIRIAMConnection();
+		 boolean miriam = MiriamWSInterface.testMIRIAMConnection();
 		 boolean biomodel = BioModelWSInterface.testBioModelConnection(proxyHost, proxyPort);
 		 
-		 LogCySBML.info(String.format("[internet=%s | miriam=%s | biomodel=%s]", internet, miriam, biomodel));
+		 CySBML.LOGGER.info(String.format("[internet=%s | miriam=%s | biomodel=%s]", internet, miriam, biomodel));
 		 if (!internet || !miriam || !biomodel){
 			 /*
 			 String msg = "<html><h3><span color=\"red\">cySBML Connection problems</span></h3>";
@@ -98,28 +95,9 @@ public class CySBMLConnection {
            uc.connect();
            return true;
        } catch (IOException e) {
-           LogCySBML.warning("No internet connection");
+    	   CySBML.LOGGER.warning("No internet connection");
            return false;
        }
    }
-	
-	/** Test MIRIAM connection */
-   private static boolean testMIRIAMConnection() {
-       String test = null;
-   	try {
-       	MiriamLink link = new MiriamLink();
-           link.setAddress("http://www.ebi.ac.uk/miriamws/main/MiriamWebServices");
-           test = link.getDataTypeURI("ChEBI");
-           
-       } catch (Exception e) {
-           // we couldn't connect:
-       	e.printStackTrace();
-           return false;
-       }
-   	return (test != null);
-   }
-   
 
-	
-	
 }

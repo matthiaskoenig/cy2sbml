@@ -6,7 +6,7 @@ import java.io.File;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 
-import cysbml.CySBMLPlugin;
+import cysbml.CySBML;
 import cysbml.layout.CytoscapeLayoutTools;
 import cytoscape.util.CytoscapeAction;
 import cytoscape.util.FileUtil;
@@ -15,12 +15,12 @@ import cytoscape.util.FileUtil;
 public class LoadLayoutAction extends CytoscapeAction {
 
 	public LoadLayoutAction() {
-		super(CySBMLPlugin.NAME+" Load Layout");
+		super(CySBML.NAME+" Load Layout");
 	}
 
-	public LoadLayoutAction(ImageIcon icon, CySBMLPlugin plugin) {
+	public LoadLayoutAction(ImageIcon icon, CySBML plugin) {
 		super("", icon);
-		this.putValue(Action.SHORT_DESCRIPTION, CySBMLPlugin.NAME+" Load Layout");
+		this.putValue(Action.SHORT_DESCRIPTION, CySBML.NAME+" Load Layout");
 	}
 
 	public void actionPerformed(ActionEvent ae) {

@@ -1,17 +1,15 @@
 package cysbml.biomodel;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
-
-import org.xml.sax.SAXException;
-
-import cysbml.logging.LogCySBML;
-import cysbml.tools.DataStructures;
 
 import uk.ac.ebi.biomodels.ws.BioModelsWSClient;
 import uk.ac.ebi.biomodels.ws.BioModelsWSException;
 import uk.ac.ebi.biomodels.ws.SimpleModel;
 
+import cysbml.CySBML;
 
 /** Main class for interaction with the biomodels via webservices.
  * Currently included via the standalone library build -> TODO: change to the
@@ -77,7 +75,8 @@ public class BioModelWSInterface {
 		} catch (BioModelsWSException e) {
 			e.printStackTrace();
 		}
-		return DataStructures.convertArrayToList(ids);
+		if (ids == null){ return new LinkedList<String>(); }
+		return Arrays.asList(ids);
 	}
 	
 	public List<String> getBioModelIdsByPerson(String person){
@@ -88,7 +87,8 @@ public class BioModelWSInterface {
 		} catch (BioModelsWSException e) {
 			e.printStackTrace();
 		}
-		return DataStructures.convertArrayToList(ids);
+		if (ids == null){ return new LinkedList<String>(); }
+		return Arrays.asList(ids);
 	}
 	
 	public List<String> getBioModelIdsByPublication(String publication){
@@ -99,7 +99,8 @@ public class BioModelWSInterface {
 		} catch (BioModelsWSException e) {
 			e.printStackTrace();
 		}
-		return DataStructures.convertArrayToList(ids);
+		if (ids == null){ return new LinkedList<String>(); }
+		return Arrays.asList(ids);
 	}
 	
 	public List<String> getBioModelIdsByTaxonomy(String taxonomy){
@@ -110,7 +111,8 @@ public class BioModelWSInterface {
 		} catch (BioModelsWSException e) {
 			e.printStackTrace();
 		}
-		return DataStructures.convertArrayToList(ids);
+		if (ids == null){ return new LinkedList<String>(); }
+		return Arrays.asList(ids);
 	}
 	
 	public List<String> getBioModelIdsByTaxonomyId(String taxonomyId){
@@ -121,7 +123,8 @@ public class BioModelWSInterface {
 		} catch (BioModelsWSException e) {
 			e.printStackTrace();
 		}
-		return DataStructures.convertArrayToList(ids);
+		if (ids == null){ return new LinkedList<String>(); }
+		return Arrays.asList(ids);
 	}
 	
 	public List<String> getBioModelIdsByChebi(String chebi){
@@ -132,7 +135,8 @@ public class BioModelWSInterface {
 		} catch (BioModelsWSException e) {
 			e.printStackTrace();
 		}
-		return DataStructures.convertArrayToList(ids);
+		if (ids == null){ return new LinkedList<String>(); }
+		return Arrays.asList(ids);
 	}
 	
 	public List<String> getBioModelIdsByChebiId(String chebiId){
@@ -143,7 +147,8 @@ public class BioModelWSInterface {
 		} catch (BioModelsWSException e) {
 			e.printStackTrace();
 		}
-		return DataStructures.convertArrayToList(ids);
+		if (ids == null){ return new LinkedList<String>(); }
+		return Arrays.asList(ids);
 	}
 	
 	public List<String> getBioModelIdsByUniprot(String uniprot){
@@ -154,7 +159,8 @@ public class BioModelWSInterface {
 		} catch (BioModelsWSException e) {
 			e.printStackTrace();
 		}
-		return DataStructures.convertArrayToList(ids);
+		if (ids == null){ return new LinkedList<String>(); }
+		return Arrays.asList(ids);
 	}
 	
 	public List<String> getBioModelIdsByUniprotId(String uniprotId){
@@ -165,7 +171,8 @@ public class BioModelWSInterface {
 		} catch (BioModelsWSException e) {
 			e.printStackTrace();
 		}
-		return DataStructures.convertArrayToList(ids);
+		if (ids == null){ return new LinkedList<String>(); }
+		return Arrays.asList(ids);
 	}
 	
 	public String getBioModelNameById(String id){
@@ -187,7 +194,7 @@ public class BioModelWSInterface {
 			date = client.getLastModifiedDateByModelId(id);
 		} catch (BioModelsWSException e) {
 			e.printStackTrace();
-		} 
+		}
 		return date;
 	}
 	
@@ -198,8 +205,9 @@ public class BioModelWSInterface {
 			authors = client.getAuthorsByModelId(id);
 		} catch (BioModelsWSException e) {
 			e.printStackTrace();
-		} 
-		return DataStructures.convertArrayToList(authors);
+		}
+		if (authors == null){ return new LinkedList<String>(); }
+		return Arrays.asList(authors);
 	}
 	
 	public List<String> getEncodersByModelId(String id){
@@ -210,7 +218,8 @@ public class BioModelWSInterface {
 		} catch (BioModelsWSException e) {
 			e.printStackTrace();
 		}
-	    return DataStructures.convertArrayToList(encoders);
+	    if (encoders == null){ return new LinkedList<String>(); }
+		return Arrays.asList(encoders);
 	}
 	
 	public String getBioModelSBMLById(String id){
@@ -218,14 +227,15 @@ public class BioModelWSInterface {
     	String sbml = "";
     	try {
 			sbml = client.getModelSBMLById(id);
+			if (sbml == null){
+				sbml = "";
+			}
 		} catch (BioModelsWSException e) {
 			e.printStackTrace();
 		}
     	return sbml;
-   	 	
 	}
 	
-	// simple models //
 	public SimpleModel getSimpleModelById(String id){
 		BioModelsWSClient client = createBioModelsWSClient();
 		SimpleModel model = null;
@@ -266,7 +276,7 @@ public class BioModelWSInterface {
 			test = client.getModelNameById("BIOMD0000000070");
 		} catch (BioModelsWSException e) {
 			//e.printStackTrace();
-			LogCySBML.warning("BioModelsWSException accessing BioModels");
+			CySBML.LOGGER.warning("BioModelsWSException accessing BioModels");
 			return false;
 		}
 	 	return (test != null);

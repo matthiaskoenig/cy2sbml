@@ -6,18 +6,18 @@ import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import cysbml.CySBMLPlugin;
+import cysbml.CySBML;
 import cysbml.biomodel.BioModelGUIDialog;
 import cytoscape.Cytoscape;
 import cytoscape.util.CytoscapeAction;
 
 @SuppressWarnings("serial")
 public class BiomodelAction extends CytoscapeAction {
-    public BiomodelAction() {super(CySBMLPlugin.NAME + " BioModel Import");}
+    public BiomodelAction() {super(CySBML.NAME + " BioModel Import");}
     
-	public BiomodelAction(ImageIcon icon, CySBMLPlugin plugin) {
+	public BiomodelAction(ImageIcon icon, CySBML plugin) {
 		super("", icon);
-		this.putValue(Action.SHORT_DESCRIPTION, CySBMLPlugin.NAME + " BioModel Import");
+		this.putValue(Action.SHORT_DESCRIPTION, CySBML.NAME + " BioModel Import");
 	}
     
     /** This method is called when the user selects the menu item.*/

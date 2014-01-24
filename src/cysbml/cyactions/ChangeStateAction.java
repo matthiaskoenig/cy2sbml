@@ -5,17 +5,17 @@ import java.awt.event.ActionEvent;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 
-import cysbml.CySBMLPlugin;
+import cysbml.CySBML;
 import cysbml.gui.NavigationPanel;
 import cytoscape.util.CytoscapeAction;
 
 @SuppressWarnings("serial")
 public class ChangeStateAction extends CytoscapeAction {
-    public ChangeStateAction() {super(CySBMLPlugin.NAME + " Hide/Show Panel");}
+    public ChangeStateAction() {super(CySBML.NAME + " Hide/Show Panel");}
     
-	public ChangeStateAction(ImageIcon icon, CySBMLPlugin plugin) {
+	public ChangeStateAction(ImageIcon icon, CySBML plugin) {
 		super("", icon);
-		this.putValue(Action.SHORT_DESCRIPTION, CySBMLPlugin.NAME + " Hide/Show Panel");
+		this.putValue(Action.SHORT_DESCRIPTION, CySBML.NAME + " Hide/Show Panel");
 	}
     
     public void actionPerformed(ActionEvent ae) {

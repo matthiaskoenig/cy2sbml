@@ -13,10 +13,6 @@ import cytoscape.Cytoscape;
 import cytoscape.data.CyAttributes;
 import cytoscape.data.Semantics;
 import cytoscape.data.readers.GraphReader;
-import cytoscape.layout.CyLayoutAlgorithm;
-import cytoscape.layout.CyLayouts;
-import cytoscape.layout.algorithms.GridNodeLayout;
-import cytoscape.view.CyNetworkView;
 
 import cysbml.CySBMLConstants;
 import cysbml.SBMLGraphReader;
@@ -32,7 +28,6 @@ public class GRNGraphReader extends SBMLGraphReader implements GraphReader {
 	CyAttributes eAtts;
 	
 	public GRNGraphReader(SBMLDocument document, CyNetwork sbmlNetwork) {
-	
 		super();
 		this.document = document;
 		this.sbmlNetwork = sbmlNetwork;
@@ -117,29 +112,14 @@ public class GRNGraphReader extends SBMLGraphReader implements GraphReader {
 		
 	@Override
 	public void doPostProcessing(CyNetwork network) {
-		// [1] Apply Layout
 		applyLayout(network);
-		
-		// [2] Set Layout
-		VisualStyleManager.setVisualStyleForNetwork(network, CustomStyle.GRN_STYLE);
-		
-		// [3] Update the CySBML Navigator
 		updateNavigationPanel(network);
+		VisualStyleManager.setVisualStyleForNetwork(network, CustomStyle.GRN_STYLE);
 	}
 	
 	@Override
 	public void updateNavigationPanel(CyNetwork network){
 		NavigationPanel panel = NavigationPanel.getInstance();
 		panel.putSBMLDocumentForGRN(getNetworkName(), document, network);
-	}
-	
-	private void applyLayout(CyNetwork network){
-		CyLayoutAlgorithm layout = CyLayouts.getLayout("force-directed");
-		if (layout == null){
-			layout = new GridNodeLayout();
-		}
-		CyNetworkView view = Cytoscape.getNetworkView(network.getIdentifier());
-		view.applyLayout(layout);
-	}
-	
+	}	
 }

@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.xml.bind.JAXBException;
 
-import cysbml.CySBMLPlugin;
+import cysbml.CySBML;
 import cytoscape.Cytoscape;
 import cytoscape.actions.LoadNetworkTask;
 import cytoscape.dialogs.ImportNetworkDialog;
@@ -22,11 +22,11 @@ import cytoscape.util.CytoscapeAction;
 @SuppressWarnings("serial")
 public class ImportAction extends CytoscapeAction {
 	/** The constructor sets the text that should appear on the menu item.*/
-    public ImportAction() {super(CySBMLPlugin.NAME + " Import SBML");}
+    public ImportAction() {super(CySBML.NAME + " Import SBML");}
     
-	public ImportAction(ImageIcon icon, CySBMLPlugin plugin) {
+	public ImportAction(ImageIcon icon, CySBML plugin) {
 		super("", icon);
-		this.putValue(Action.SHORT_DESCRIPTION, CySBMLPlugin.NAME + " Import SBML");
+		this.putValue(Action.SHORT_DESCRIPTION, CySBML.NAME + " Import SBML");
 	}
     
 	public void actionPerformed(ActionEvent e) {
