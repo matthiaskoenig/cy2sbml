@@ -10,6 +10,7 @@ import java.util.Properties;
 //import uk.ac.ebi.miriam.lib.MiriamLink;
 import cytoscape.CytoscapeInit;
 import cytoscape.util.ProxyHandler;
+
 import cysbml.biomodel.BioModelWSInterface;
 import cysbml.miriam.MiriamWSInterface;
 

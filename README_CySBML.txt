@@ -87,6 +87,10 @@ Build in ./build
 	ant cysbml
 
 ------------------------------------------------------------
+v1.30 [2014-01-24]
+- java 1.6 compatibility (bug fix)
+
+------------------------------------------------------------
 v1.29 [2013-11-05]
 - Source code with ANT build files from sourceforge available
 - Implemented: Gene Regulatory Network support (GRN2SBML with ExTILAR & NetGenerator)

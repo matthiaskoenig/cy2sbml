@@ -55,11 +55,11 @@
 
 	<target name="compile" depends="init" description="compile the source " >
 	    <!-- Compile the java code from ${src} into ${build} -->
-	    <javac target="1.6" source="1.6" srcdir="${src}" 
+	    <javac target="1.7" source="1.7" srcdir="${src}" 
 	    	   destdir="${build}"
 	    	   includeantruntime="false"
 	    	   classpathref="classpath"/>
-		<javac target="1.6" source="1.6" srcdir="${test}" 
+		<javac target="1.7" source="1.7" srcdir="${test}" 
 			   destdir="${build}"
 			   includeantruntime="false"
 			   classpathref="classpath"/>
@@ -79,7 +79,7 @@
 	    </junit>
 	</target>
 
-    <target name="cysbml" depends="init, compile">
+    <target name="cysbml" depends="clean, init, compile">
        <jar destfile="${build}/${name}-${version}.jar">	
         	<manifest>
                 <attribute name="Class-Path" value="."/>
@@ -102,7 +102,7 @@
         </jar>
     </target>
 	
-    <target name="cysbml-example" depends="init,compile">
+    <target name="cysbml-example" depends="clean, init,compile">
        <jar destfile="${build}/${name}Example-${version}.jar">	
         	<manifest>
                 <attribute name="Class-Path" value="."/>

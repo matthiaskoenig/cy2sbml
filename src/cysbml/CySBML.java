@@ -38,7 +38,6 @@ import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-
 import cytoscape.Cytoscape;
 import cytoscape.data.ImportHandler;
 import cytoscape.plugin.CytoscapePlugin;
