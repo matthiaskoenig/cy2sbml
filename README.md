@@ -13,6 +13,8 @@ visualization of SBML network annotations within the network context, direct imp
 * Java based SBML parser for Cytoscape based on [JSBML](http://sourceforge.net/projects/jsbml/)
 * access to models and annotations via [BioModel](http://www.biomodels.org/) and [MIRIAM WebServices](http://www.ebi.ac.uk/miriam/main/)
 * supports all versions of SBML
+* support of SBML Layout Package
+* support of SBML Qualitative Models Package
 * SBML validation (SBML warnings and errors accessible)
 * Standard network layout based on the species/reaction model
 * Provides access to RDF based annotation information within
@@ -20,6 +22,14 @@ visualization of SBML network annotations within the network context, direct imp
 * Navigation menu based on the SBML structure linked to layout 
   and annotation information
 * succesfully tested with all SBML.org and Biomodels.org testcases (sbml-test-cases-2.0.2, BioModels_Database-r21-sbml_files)
+
+The [cy2sbml tutorial](./doc/tutorial/CySBML-v1.2-tutorial.pdf)  covers the following topics
+* Installation
+* CySBML interface
+* Import of SBML models
+* Access to annotation information
+* SBML validation in CySBML
+* Programmatic Interaction with CySBML
 
 ## License
 * Source Code: [GPLv3](http://opensource.org/licenses/GPL-3.0)
