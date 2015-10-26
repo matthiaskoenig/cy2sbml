@@ -44,12 +44,10 @@ Bioinformatics. 2012 Jul 5. [PubMed](http://www.ncbi.nlm.nih.gov/pubmed/22772946
 * install Cytoscape v2.8.3  
     http://www.cytoscape.org/download.html  
     http://chianti.ucsd.edu/Cyto-2_8_3/
-
 * download latest release jar  
     https://github.com/matthiaskoenig/cy2sbml/releases
-
-* move downloaded `cySBML-vx.xx.jar` in the Cytoscape plugin folder under `Cytoscape_v2.8.3/plugins/`. In Windows this folder is normally located under `C:/Program Files/Cytoscape_v2.8.3/plugins.`
-
+* move downloaded `cy2sbml-vx.x.x.jar` in the Cytoscape plugin folder under `Cytoscape_v2.8.3/plugins/`.  
+In Windows this folder is located in `C:/Program Files/Cytoscape_v2.8.3/plugins.`
 * remove `sbml-reader-2.8.3-jar-with-dependencies.jar` from the plugin folder.
 
 cy2sbml is installed and available in Cytoscape under plugins after the next startup of Cytoscape.
