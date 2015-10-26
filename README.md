@@ -26,38 +26,31 @@ The CySBML team.
   cases (sbml-test-cases-2.0.2, BioModels_Database-r21-sbml_files)
 
 
-## Installation
-[1] install Cytoscape v2.8.3
-    http://www.cytoscape.org/download.html
+## Install
+* install Cytoscape v2.8.3  
+    http://www.cytoscape.org/download.html  
     http://chianti.ucsd.edu/Cyto-2_8_3/
 
-[2] download latest release 
-    http://sourceforge.net/projects/cysbml/
+* download latest release jar  
+    https://github.com/matthiaskoenig/cy2sbml/releases
 
-[3] move the downloaded 
-         cySBML-vx.xx.jar' 
-    in the Cytoscape plugin folder under 
-    'Cytoscape_v2.8.*/plugins/'.
-    In Windows this folder is normally located under 
-    C:/Program Files/Cytoscape_v2.8.*/plugins.
+* move downloaded `cySBML-vx.xx.jar` in the Cytoscape plugin folder under `Cytoscape_v2.8.3/plugins/`. In Windows this folder is normally located under `C:/Program Files/Cytoscape_v2.8.3/plugins.`
 
-[4] remove 'sbml-reader-2.8.*-jar-with-dependencies.jar' from 
-    the plugin folder.
+* remove `sbml-reader-2.8.3-jar-with-dependencies.jar` from the plugin folder.
 
-cy2sbml is installed and available in Cytoscape under 
-plugins after the next startup of Cytoscape.
-
+cy2sbml is installed and available in Cytoscape under plugins after the next startup of Cytoscape.
 
 ## Uninstall
-[1] remove the cySBML-vx.xx.jar from the plugin folder.
+* remove the cy2sbml-vx.xx.jar from the plugin folder.
 
 
-*** Build instructions ***
-Clone
-	git clone git://git.code.sf.net/p/cysbml/code cysbml-code
-	cd cysbml-code
-Build in ./build
-	ant cysbml
+## Build instructions
+Clone and build from source
+```
+git clone https://github.com/matthiaskoenig/cy2sbml.git cy2sbml
+cd cysbml
+ant cysbml
+```
 
 ## Changelog
 ### v1.30 [2014-01-24]
@@ -100,5 +93,3 @@ Build in ./build
 - BioModel Search Interface renewed
 - BioModel Search via arbitrary Text with IDs
 - Compability with NetMatch, NetworkAnalyzer and FluxViz
-
-
