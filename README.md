@@ -29,6 +29,7 @@ The CySBML team.
 ## Installation
 [1] install Cytoscape v2.8.3
     http://www.cytoscape.org/download.html
+    http://chianti.ucsd.edu/Cyto-2_8_3/
 
 [2] download latest release 
     http://sourceforge.net/projects/cysbml/
@@ -79,8 +80,7 @@ Build in ./build
 - Update of libraries: biomodels-1.21; MiriamJavaLib-1.1.5; 
 			jsbml-1.0-a1; jsbml-layout-1.0-b1; jsbml-qual-2.1-b1.jar 
 - Fixed: direction of modifier-reaction edges & naming of the edge interaction (also in qual)
-- Fixed: additional information from the SpeciesGlyphs & ReactionGlyphs is parsed in layout, 
-		 namely SBOId, MetaId, Name
+- Fixed: additional information from the SpeciesGlyphs & ReactionGlyphs is parsed in layout, namely SBOId, MetaId, Name
 - Fixed: layout:role is now handled correctly to set edge interaction type for layout (multiple
 		edges in layout with different layout:role correctly handled).
 
