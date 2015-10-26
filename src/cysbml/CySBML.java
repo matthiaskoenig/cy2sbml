@@ -140,8 +140,8 @@ import cysbml.SBMLFilter;
   </repositories>
  */
 public class CySBML extends CytoscapePlugin implements PropertyChangeListener{
-	public static final String NAME = "CySBML"; 
-	public static final String VERSION = "v1.30";
+	public static final String NAME = "cy2sbml"; 
+	public static final String VERSION = "v1.4.0";
 	public static LogCyPlugin LOGGER = new LogCyPlugin(NAME);
 	
 	public static final boolean DEBUG = true;
