@@ -1,6 +1,7 @@
-# cy2sbml for Cytoscape-2.8.3
+# cy2sbml: SBML for Cytoscape 2
 
-cy2sbml is a Cytoscape 2 plugin for the import and work with SBML files in Cytoscape providing the visualisation of SBML network annotations within the network context.
+cy2sbml is a Cytoscape 2 plugin for the import and work with SBML files in Cytoscape 2 providing the visualization of SBML network annotations within the network context.
+For Cytoscape 3 use cy3sbml available from https://github.com/matthiaskoenig/cy3sbml 
 
 SBML models can be imported from BioModels.net or via file or urls. One click access to the annotation resources is provided. SBML validation information about the imported files is available.
 
