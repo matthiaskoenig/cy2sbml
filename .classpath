@@ -12,27 +12,27 @@
 	<classpathentry kind="lib" path="lib/sbml/jsbml-comp-1.0-b1.jar"/>
 	<classpathentry kind="lib" path="lib/sbml/jsbml-layout-1.0-b1.jar"/>
 	<classpathentry kind="lib" path="lib/sbml/jsbml-qual-2.1-b1.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/cytoscape.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/advanced-network-merge-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/attribute-browser-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/automatic-layout-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/biomart-client-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/biopax-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/core-commands-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/cpath2-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/cpath-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/editor-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/equation-functions-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/filters-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/linkout-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/manual-layout-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/ncbi-client-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/network-analyzer-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/psi-mi-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/quickfind-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/rfilters-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/table-import-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/Programs/Cytoscape_2/cytoscape-2.8.3/plugins/y-layouts-1.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/ehcache-2.7.5.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/cytoscape.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/advanced-network-merge-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/attribute-browser-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/automatic-layout-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/biomart-client-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/biopax-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/core-commands-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/cpath2-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/cpath-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/editor-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/equation-functions-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/filters-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/linkout-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/manual-layout-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/ncbi-client-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/network-analyzer-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/psi-mi-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/quickfind-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/rfilters-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/table-import-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/y-layouts-1.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

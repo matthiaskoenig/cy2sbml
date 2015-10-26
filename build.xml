@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project name="CySBML" default="cysbml" basedir=".">
+<project name="cy2sbml" default="cy2sbml" basedir=".">
     <description>
-        CySBML build ANT build file
+        cy2sbml ant build file
     </description>
   	
 	<!-- set global properties for this build -->
-	<property name="cytoLibDir" value="${user.home}/Programs/Cytoscape_2/cytoscape-2.8.3"/>
-	<property name="name" value="CySBML"/>
-    <property name="version" value="v1.30"/>
+	<property name="cytoLibDir" value="lib/cytoscape-2.8.3"/>
+	<property name="name" value="cy2sbml"/>
+    <property name="version" value="v1.4.0"/>
     <property name="lib" value="lib"/>	        	
     <property name="src" location="src"/>
 	<property name="test" location="test"/>
@@ -79,7 +79,7 @@
 	    </junit>
 	</target>
 
-    <target name="cysbml" depends="clean, init, compile">
+    <target name="cy2sbml" depends="clean, init, compile">
        <jar destfile="${build}/${name}-${version}.jar">	
         	<manifest>
                 <attribute name="Class-Path" value="."/>
