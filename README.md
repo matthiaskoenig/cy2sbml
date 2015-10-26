@@ -2,8 +2,6 @@
 
 **cy2sbml** is a [Cytoscape 2](http://www.cytoscape.org) plugin for the Systems Biology Markup Language [SBML](http://www.sbml.org). For Cytoscape 3 use [cy3sbml](https://github.com/matthiaskoenig/cy3sbml).
 
-![alt tag](./docs/images/logo100.png) 
-
 **cy2sbml** provides advanced functionality for the import and work with models encoded in SBML, amongst others the 
 visualization of SBML network annotations within the network context, direct import of models from repositories like [biomodels](http://www.biomodels.org) and one-click access to annotation resources and SBML model information and SBML validation.
 
@@ -27,13 +25,10 @@ visualization of SBML network annotations within the network context, direct imp
 * Source Code: [GPLv3](http://opensource.org/licenses/GPL-3.0)
 * Documentation: [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
 
-If you use **cy2sbml** please cite  
+## Citation
 Matthias König, Andreas Dräger and Hermann-Georg Holzhütter  
 *CySBML: a Cytoscape plugin for SBML*  
 Bioinformatics. 2012 Jul 5. [PubMed](http://www.ncbi.nlm.nih.gov/pubmed/22772946) 
-
-Thanks and have fun 
-The cy2sbml team.
 
 ## Install
 * install Cytoscape v2.8.3  
@@ -50,7 +45,7 @@ The cy2sbml team.
 cy2sbml is installed and available in Cytoscape under plugins after the next startup of Cytoscape.
 
 ## Uninstall
-* remove the cy2sbml-vx.xx.jar from the plugin folder.
+* remove the `cy2sbml-vx.xx.jar` from the plugin folder.
 
 ## Build instructions
 Clone and build from source
