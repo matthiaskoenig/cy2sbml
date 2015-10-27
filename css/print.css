@@ -1,0 +1,42 @@
+/**************** menu *****************/
+#menu {
+	background:#ffffff;
+	position: relative;
+	z-index:100;
+	width:100%;
+	left: 0px;
+}
+
+/**************** main *****************/
+#main {
+	background:#ffffff; 	
+	position: relative;
+	z-index:80;
+	width:100%;
+	left: 0px;
+}
+
+/* Remove unwanted elements */
+span.toplink, .news
+{
+display: none;
+}
+
+
+/* Ensure the content spans the full width */
+#main
+{
+width: 90%; margin: 0; float: none;
+}
+
+/* Change text colour to black (useful for light text on a dark background) */
+.lighttext
+{
+color: #000
+}
+
+/* Improve colour contrast of links */
+a, a:link, a:visited
+{
+color: #0000ff;
+}
