@@ -9,6 +9,7 @@ For Cytoscape 3 use [cy3sbml](https://github.com/matthiaskoenig/cy3sbml).
 visualization of SBML network annotations within the network context, direct import of models from repositories like [biomodels](http://www.biomodels.org) and one-click access to annotation resources and SBML model information and SBML validation.
 
 **Status** : v1.30  
+**Documentation** :  http://matthiaskoenig.github.io/cy2sbml  
 **Support & Forum** : https://groups.google.com/forum/#!forum/cysbml-cyfluxviz  
 **Bug Tracker** : https://github.com/matthiaskoenig/cy2sbml/issues  
 
