@@ -1,1 +1,307 @@
-My Page
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="./css/core.css" type="text/css" />
+<link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+<title>CySBML</title>
+</head>
+
+<body>
+
+<div id="menu">
+	<div id="navigation">
+	<!-- <h1>cySBML</h1> -->
+	<!-- <img alt="cySBML logo" src="./images/cysbml_logo.png" width="170"></img><br /> -->
+	<h1>CySBML&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"http://sbml.org\"><img src="images/sbml_logo.png" alt=\"SBML Logo\" border=0></img></a></h1>
+	<a class="menu" href="#Introduction">Introduction</a><br />
+	<a class="menu" href="#Installation">Installation</a><br />
+	<a class="menu" href="#Usage">Usage Guide</a><br />
+	<a class="menu" href="#FAQ">FAQ</a><br />
+	<a class="menu" href="#Resources">Additional Resources</a><br />
+	</div>
+		</p>
+	<div id="news">
+	<p class="news">
+	<b>Documents</b><br />
+	<a href="CySBML-v1.2-tutorial.pdf" target="_blank">&nbsp;<img src="../../images/pdf.jpeg">CySBML Tutorial</a></br>
+	<a href="CySBML-v1.2-presentation.pdf" target="_blank">&nbsp;<img src="../../images/pdf.jpeg">CySBML Presentation</a>
+	</p>	
+	<p class="news">
+	<b>Release Information</b><br />	
+		[29|June|2012]<br />
+	CySBML paper accepted at Bioinformatics.<br>
+	</p>
+	<p class="news">
+	[14|June|2012]<br />
+	Release of CySBML-v1.2<br>
+	New Dialogue and Interface, bug reversibility fixed.
+	</p>
+	<p class="news">
+	[05|June|2012]<br />
+	Release of CySBML-v1.1 new BioModel Import/Search.<br>
+	Minor Bug fixes.
+	</p>
+	<p class="news">
+	[24|April|2012]<br />
+	Release of CySBML-v1.0 extending Layout support.
+	</p>
+	<p class="news">
+	[08|April|2012]<br />
+	Release of CySBML-v0.75 supporting SBML 3 Layout and 
+	Qualitative Models packages.
+	</p>
+	<p class="news">
+	[01|April|2012]<br />
+	Release of CySBML-v0.5.
+	</p>
+	<p class="news">
+	<b>Contact</b><br />
+	<a href="http://sourceforge.net/projects/cysbml/" target="_blank">http://sourceforge.net/projects/cysbml/</a></br> 
+	<a href="http://www.charite.de/sysbio/people/koenig/" target="_blank">http://www.charite.de/sysbio/people/koenig/</a><br></br>
+	</p>
+	<h1>&nbsp;</h1>
+	</div>
+
+</div>
+
+<div id="main">
+
+<!-- Introduction -->
+<h2><a name="top"></a><a name="Introduction"></a>Introduction</h2>
+<p>
+We are pleased to announce the release of CySBML available for download from <a href="http://sourceforge.net/projects/cysbml/" target="_blank">http://sourceforge.net/projects/cysbml/</a>.
+</p>
+<p>
+CySBML is a Cytoscape plugin for the import and 
+work with SBML files in Cytoscape providing the 
+visualisation of SBML annotations within the network 
+context. The main features are
+</p>
+<ul>
+<li>Java based SBML parser for Cytoscape based on the java SBML library <a href="http://sbml.org/Software/JSBML" target="_blank">JSBML</a></li>
+<li>simple access to SBML models and SBML annotations via <a href="http://www.biomodels.org/" target="_blank">BioModel</a> and 
+  <a href="http://www.ebi.ac.uk/miriam/main/" target="blank">MIRIAM WebServices</a>
+</li>
+<li>supports all versions of SBML</li>
+<li>support of <a href="http://sbml.org/Community/Wiki" target="_blank">SBML Layout Package</a></li>
+<li>support of <a href="http://sbml.org/Community/Wiki" target="_blank">SBML Qualitative Models Package</a></li>
+<li>provides SBML validation (SBML warnings and errors accessible)</li>
+<li>creates standard network layout based on the SBML species/reaction model</li>
+<li>provides access to RDF based annotation information within
+  the network context</li>
+<li>Navigation menu based on the SBML structure linked to layout 
+  and annotation information</li>
+<li>succesfully tested with all SBML.org and Biomodels.org test
+  cases (sbml-test-cases-2.0.2, BioModels_Database-r21-sbml_files)</li>
+</ul>
+
+<p>The <a href="CySBML-v1.2-tutorial.pdf" target="_blank">CySBML tutorial</a> covers the following topics
+<ul>
+<li>Installation</li>
+<li>CySBML interface</li>
+<li>Import of SBML models</li>
+<li>Access to annotation information</li>
+<li>SBML validation in CySBML</li>
+<li>Programmatic Interaction with CySBML</li>
+</ul>
+with examples for the programmatic interaction provided as <a href="CySBMLExamples-v1.2.jar" target="_blank">CySBMLExamples.jar</a>. 
+ </p>
+
+<p>
+Please try and report any problems you encounter using CySBML to
+matthias.koenig[AT]charite.de
+</p>
+<p>
+Publications originating from the use of CySBML should cite the the following publication
+<table>
+<tr>
+	<td>
+	Matthias K&ouml;nig, Andreas Dr&auml;ger and Hermann-Georg Holzh&uuml;tter<br />	
+	<i>CySBML: a Cytoscape plugin for SBML</i><br />
+ 	Bioinformatics.  2012 Jul 5. 
+	[<a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=pubmed&cmd=Retrieve&dopt=AbstractPlus&list_uids=22772946" target="_blank">PubMed</a>]
+ 	</td>
+</tr>
+</table>
+</p>
+<p>
+	Thanks and have fun</br>
+	The CySBML team.
+</p>
+
+</p>
+<p>
+<p>
+	CySBML was developed by <a href="http://www.charite.de/sysbio/people/koenig/">Matthias K&ouml;nig</a> in cooperation with 
+	<a href="http://www.ra.cs.uni-tuebingen.de/mitarb/draeger/">Andreas Dr&auml;ger</a> from the Center of Bioinformatics Tuebingen (ZBIT) and was funded by the Virtual Liver Network.
+</p>
+<p>
+We thank Camille Laibe for implementing additional BioModel WebService functionality, 
+the Qual Team and Finja B&uuml;chel, Florian Mittag, and Nicolas Rodriguez (Qual implementation in JSBML), 
+Sebastian Fr&ouml;hlich and Clemens Wrzodek (Layout support in JSBML) as well as Sonia Villegas, Michael Weidlich and Christian B&ouml;lling for testing CySBML.
+</p>
+	<a href="http://www.virtual-liver.de"><img src="http://www.virtual-liver.de/images/logo.png" alt="VLN Logo" border=0 height=37 width=100></img></a>&nbsp;&nbsp;
+	<a href=\"http://www.charite.de\"><img src="http://www.charite.de/sysbio/Charite.small.png" alt="Charite Logo" border=0 height=37 width=101></img></a>&nbsp;&nbsp;
+</p>
+
+<!-- Installation -->
+<h2><a name="Installation"></a>Installation</h2>
+<span class="toplink">[<a href="#top">top</a>]</span><br />
+<p>
+<a href="http://www.cytoscape.org/" target="_blank">Cytoscape 2.8.2</a> or later has to be installed prior to the plugin installation.
+<p>
+[1] Download the latest <span class="cysbml">CySBML</span> version at <a href="http://sourceforge.net/projects/cysbml/" target="_blank">http://sourceforge.net/projects/cysbml/</a>.</br>
+</p>
+<p>
+[2] Move the <span class="code">CySBML-vX.XX.jar</span> into the Cytoscape plugin directory located in the Cytoscape installation directory under plugins<br />
+<span class="code">$CYTO_INSTALL/plugins/</span>.</br> 
+On Windows Systems <span class="code">Program Files/Cytoscape_v2.8.2/plugins/</span> on Mac 
+<span class="code">/Applications/Cytoscape_v2.8.2/plugins</span>.<br/>
+</p>
+<p>
+[3] Remove the <span class="code">sbml-reader-2.8.2-jar-with-dependencies.jar</span> from the plugin folder.
+</p>
+<p>
+The plugin is loaded and installed during the next Cytoscape startup.</br>
+To update to current CySBML version replace the old version of <span class="code">cySBML-vX.XX.jar</span> with the new version, to uninstall remove the <span class="code">cySBML-vX.XX.jar</span> from the plugin folder. 
+</p>
+
+<!-- Usage guide -->
+<h2><a name="Usage"></a>Usage guide</h2>
+<span class="toplink">[<a href="#top">top</a>]<br /></span>
+<h3>CySBML Menu Bar</h3>
+<p>
+	The main functionality of cySBML is accesible via the Cytoscape menu bar in the top region of the Cytoscape window</br>
+	</br>
+	<img src="images/menubar.png"></img>
+</p>
+<table cellpadding="7" valign="top">
+   <tr>
+		<td><img src="images/import.png"></img></td>
+		<td><b>SBML Import</b></td>
+		<td>Load SBML files via the File Import Dialog. To import multiple files select 
+			multiple files.</td>
+	</tr>	
+	<tr>
+		<td><img src="images/biomodel.png"></img></td>
+		<td><b>BioModel Import</b></td>
+		<td>SBML files from BioModels are loaded via the BioModel Import Dialog.</td>
+	</tr>
+	<tr>
+		<td><img src="images/validate.png"></img></td>
+		<td><b>SBML Validation</b></td>
+		<td>Imported SBML files can be validated. Select the SBML network to validate
+		 	and click the validation icon.</td>
+	</tr>
+	<tr>
+		<td><img src="images/hideshow.png"></img></td>
+		<td><b>Hide/Show cySBML Panel</b></td>
+		<td>Changes the visibility of the cySBML Panel for better overview. Initially the CySBML Navigation Panel is hidden and 
+		only opened after loading of SBML models.</td>
+	</tr>
+	<tr>
+		<td><img src="images/help.png"></img></td>
+		<td><b>Help</b></td>
+		<td>cySBML tutorial and help system.</td>
+	</tr>
+</table>
+</p>
+
+<h3>BioModel Import</h3>
+<p>
+<img src="images/biomodel.png"></img>&nbsp;&nbsp;BioModels can be searched via name, person, publication (abstract or pubmed id),
+ChEBI (id or name) and UniProt (id or name). The selected models form the result list can than be imported.</br>
+To load, for instance, all models related to the name glycolysis search
+by name "glycolysis" select all found models and click "Load Selected". Information for the search results is displayed, 
+selected models are marked in green.</br></br>
+Alternatively models can be imported based on given BioModel identifiers or text containing BioModel identifiers.</br>
+</p>
+<p>
+<img src="images/CySBML_bm_import.jpg"></img>
+</p>
+
+<h3>Integration with Cytoscape and Other Plugins</h3>
+<p>CySBML integrates seamlessly with the Cytoscape ecosystem consisting of the Cytoscape core and plugins. Many plugins work out of the box
+with Cytoscape, thereby providing additional functionality for SBML files. For instance 
+<a href="http://med.bioinf.mpi-inf.mpg.de/netanalyzer/" target="_blank">NetworkAnalyzer</a> to calculate topological parameters 
+of the models, <a href="http://baderlab.org/Software/NetMatch" target="_blank">NetMatch</a> to find network motifs within SBML models 
+or <a href="http://www.charite.de/sysbio/people/koenig/software/fluxviz/help/" target="_blank">FluxViz</a> to visualize flux distributions in SBML models.</p>
+<p>
+<p>CySBML provides the SBML information as Cytoscape node and edge attributes under well defined names given in the CySBMLConstants class.
+For in detailed information of interaction with CySBML see the tutorial example.</p>
+<p>
+<img src="images/CySBML_integration.png"></img>
+</p>
+
+<h3>SBML Annotations</h3>
+<p>MIRIAM and SBO annotations are accessible via the CySBML Navigation Panel in the Cytoscape Results Panel.</br>
+Annotation information is loaded on the fly for selected nodes in the network, like in the example the information for glucose-6 phosphate
+for the BioModel of Pritchard2002. Crosslinks to additional resources are opened in the browser.</p>
+<p>
+<img src="images/cySBML_annotation.png"></img>
+</p>
+
+<h3>Support of Layout and Qualitative Models Package</h3>
+<p>CySBML supports the SBML Level 3 packages for qualitative Models and Layouts. Layout information from the layout extension is used to 
+set the positions and boundary boxes of the nodes. Furthermore, SBML qualitative models can be imported with their annotations and thereby 
+allows for models where species do not represent quantity of matter and processes are not reactions per se like, for instance, Boolean nets.</p>
+<p>
+<img src="images/cySBML_packages.png"></img>
+</p>
+
+<h3>SBML Validation</h3>
+<p>
+<img src="images/validate.png"></img>&nbsp;&nbsp;SBML models can be validated from within Cytoscape.
+Validation errors can be filtered by the severity of the error falling in the classes INFO, WARNING, ERROR, FATAL and ALL.
+</p>
+<p>
+<img src="images/cySBML_validate.png"></img>
+</p>
+
+<!-- Resources -->
+<h2><a name="FAQ"></a>FAQ</h2>
+<span class="toplink">[<a href="#top">top</a>]<br /></span>
+<p><i>During installation, it is required to delete the file: sbml-reader-2.8.2-jar-with-dependencies.jar. Please
+clarify why this is needed and if this is another plugin that needs to be removed then this could be a
+potential conflict?</i></p>
+<p>No conflicts arise after the SBMLReader is removed because CySBML provides the complete subset of
+SBML parsed by SBMLReader under identical node and edge attribute names. All plugins relying in any
+way on SBMLReader have access to the identical information in CySBML.<br/>
+The issue with removing SBMLReader is due to problems with how Cytoscape registers CyFilters and
+FileReaders for given file types and how plugins are loaded in Cytoscape.<br/>
+Currently, no methods are available in Cytoscape to unregister instances of CyFilters after these have
+once been registered for given file types, with the first filter registering for a file type being permanently
+associated. In the case of SBMLReader and CySBML (both registering for SBML), the plugin loaded first
+during Cytoscape startup is associated permanently with SBML. The loading order of plugins depends on
+a multitude of variables and cannot be guaranteed (for example, core plugins are treated differently than
+other plugins, plugins given as parameters at startup are treated differently than plugins in the Cytoscape
+plugin folder, naming of the plugins influences the loading order, ...). Due to the missing methods to
+unregister the SBMLReader CyFilter for SBML files in Cytoscape the only option to guarantee CySBML
+is associated with SBML is to remove the SBMLReader plugin which than does not register its CyFilter.<br/>
+Like mentioned above, no conflicts arise and the complete functionality of SBMLReader is available in
+CySBML.
+
+<!-- Resources -->
+<h2><a name="Resources"></a>Additional Resources</h2>
+<span class="toplink">[<a href="#top">top</a>]<br /></span>
+
+<h3>Referenced Jar files</h3>
+<p><b>JSBML</b></br>
+    <a href="http://sbml.org/Software/JSBML" target="_blank">http://sbml.org/Software/JSBML</a></br>
+    <a href="http://sourceforge.net/projects/jsbml/files/jsbml/" target="_blank">http://sourceforge.net/projects/jsbml/files/jsbml/</a></br>
+</p>
+<p><b>BioModel</b></br>
+    <a href="http://www.biomodels.org/" target="_blank">http://www.biomodels.org/</a></br>
+    <a href="http://sourceforge.net/projects/biomodels/files/biomodels-wslib/" target="_blank">http://sourceforge.net/projects/biomodels/files/biomodels-wslib/</a></br>
+</p>
+<p><b>MIRIAM</b></br>
+    <a href="http://www.ebi.ac.uk/miriam/main/" target="_blank">http://www.ebi.ac.uk/miriam/main/</a></br>
+    <a href="http://sourceforge.net/projects/miriam/files/Miriam%20Java%20Library/1.1.4/" target="_blank">http://sourceforge.net/projects/miriam/files/Miriam%20Java%20Library/1.1.4/</a></br>
+</p>
+</div>
+
+</body>
+</html>
