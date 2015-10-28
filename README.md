@@ -1,9 +1,7 @@
 # cy2sbml: SBML for Cytoscape 2
-
-**cy2sbml** is a [Cytoscape 2](http://www.cytoscape.org) plugin for the Systems Biology Markup Language [SBML](http://www.sbml.org).  
-For Cytoscape 3 use [cy3sbml](https://github.com/matthiaskoenig/cy3sbml).
-
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=RYHNRJFBMWD5N" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a>
+
+**cy2sbml** is a [Cytoscape 2](http://www.cytoscape.org) plugin for the Systems Biology Markup Language [SBML](http://www.sbml.org). For Cytoscape 3 use [cy3sbml](https://github.com/matthiaskoenig/cy3sbml).
 
 **cy2sbml** provides advanced functionality for the import and work with models encoded in SBML, amongst others the 
 visualization of SBML network annotations within the network context, direct import of models from repositories like [biomodels](http://www.biomodels.org) and one-click access to annotation resources and SBML model information and SBML validation.
@@ -13,7 +11,7 @@ visualization of SBML network annotations within the network context, direct imp
 **Support & Forum** : https://groups.google.com/forum/#!forum/cysbml-cyfluxviz  
 **Bug Tracker** : https://github.com/matthiaskoenig/cy2sbml/issues  
 
-## Features
+### Features
 * Java based SBML parser for Cytoscape based on [JSBML](http://sourceforge.net/projects/jsbml/)
 * access to models and annotations via [BioModel](http://www.biomodels.org/) and [MIRIAM WebServices](http://www.ebi.ac.uk/miriam/main/)
 * supports all versions of SBML
@@ -27,40 +25,33 @@ visualization of SBML network annotations within the network context, direct imp
   and annotation information
 * succesfully tested with all SBML.org and Biomodels.org testcases (sbml-test-cases-2.0.2, BioModels_Database-r21-sbml_files)
 
-The [cy2sbml tutorial](./doc/tutorial/CySBML-v1.2-tutorial.pdf)  covers the following topics
-* Installation
-* CySBML interface
-* Import of SBML models
-* Access to annotation information
-* SBML validation in CySBML
-* Programmatic Interaction with CySBML
-
-## License
+### License
 * Source Code: [GPLv3](http://opensource.org/licenses/GPL-3.0)
 * Documentation: [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
 
-## Citation
+### Citation
 Matthias König, Andreas Dräger and Hermann-Georg Holzhütter  
 *CySBML: a Cytoscape plugin for SBML*  
 Bioinformatics. 2012 Jul 5. [PubMed](http://www.ncbi.nlm.nih.gov/pubmed/22772946) 
 
-## Install
+## Installation
+### Install
 * install Cytoscape v2.8.3  
     http://www.cytoscape.org/download.html  
     http://chianti.ucsd.edu/Cyto-2_8_3/
 * download latest release jar  
-    https://github.com/matthiaskoenig/cy2sbml/releases
-* move downloaded `cy2sbml-vx.x.x.jar` in the Cytoscape plugin folder under `Cytoscape_v2.8.3/plugins/`.  
+    https://github.com/matthiaskoenig/cy2sbml/releases/latest
+* move `cy2sbml-vx.x.x.jar` in the Cytoscape plugin folder under `Cytoscape_v2.8.3/plugins/`.  
 In Windows this folder is located in `C:/Program Files/Cytoscape_v2.8.3/plugins.`
 * remove `sbml-reader-2.8.3-jar-with-dependencies.jar` from the plugin folder.
 
-cy2sbml is installed and available in Cytoscape under plugins after the next startup of Cytoscape.
+cy2sbml is installed and available in the plugins menu after restarting Cytoscape.
 
-## Uninstall
-* remove the `cy2sbml-vx.xx.jar` from the plugin folder.
+### Uninstall
+Remove the `cy2sbml-vx.xx.jar` from the plugin folder.
 
-## Build instructions
-Clone and build from source
+### Build instructions
+Clone the repository and build with `ant`
 ```
 git clone https://github.com/matthiaskoenig/cy2sbml.git cy2sbml
 cd cy2sbml
