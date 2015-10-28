@@ -3,15 +3,14 @@
 
 **cy2sbml** is a [Cytoscape 2](http://www.cytoscape.org) plugin for the Systems Biology Markup Language [SBML](http://www.sbml.org). For Cytoscape 3 use [cy3sbml](https://github.com/matthiaskoenig/cy3sbml).
 
-**cy2sbml** provides advanced functionality for the import and work with models encoded in SBML, amongst others the 
-visualization of SBML network annotations within the network context, direct import of models from repositories like [biomodels](http://www.biomodels.org) and one-click access to annotation resources and SBML model information and SBML validation.
-
 **Status** : released  
 **Documentation** :  http://matthiaskoenig.github.io/cy2sbml  
 **Support & Forum** : https://groups.google.com/forum/#!forum/cysbml-cyfluxviz  
 **Bug Tracker** : https://github.com/matthiaskoenig/cy2sbml/issues  
 
 ### Features
+**cy2sbml** provides advanced functionality for the import and work with models encoded in SBML, amongst others the 
+visualization of SBML network annotations within the network context, direct import of models from repositories like [biomodels](http://www.biomodels.org) and one-click access to annotation resources and SBML model information and SBML validation.
 * Java based SBML parser for Cytoscape based on [JSBML](http://sourceforge.net/projects/jsbml/)
 * access to models and annotations via [BioModel](http://www.biomodels.org/) and [MIRIAM WebServices](http://www.ebi.ac.uk/miriam/main/)
 * supports all versions of SBML
