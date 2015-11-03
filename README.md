@@ -8,7 +8,7 @@ For Cytoscape 3 use [cy3sbml](https://github.com/matthiaskoenig/cy3sbml).
 **cy2sbml** provides advanced functionality for the import and work with models encoded in SBML, amongst others the 
 visualization of SBML network annotations within the network context, direct import of models from repositories like [biomodels](http://www.biomodels.org) and one-click access to annotation resources and SBML model information and SBML validation.
 
-**Status** : v1.30  
+**Status** : released 
 **Support & Forum** : https://groups.google.com/forum/#!forum/cysbml-cyfluxviz  
 **Bug Tracker** : https://github.com/matthiaskoenig/cy2sbml/issues  
 
@@ -49,14 +49,13 @@ Bioinformatics. 2012 Jul 5. [PubMed](http://www.ncbi.nlm.nih.gov/pubmed/22772946
     http://chianti.ucsd.edu/Cyto-2_8_3/
 * download latest release jar  
     https://github.com/matthiaskoenig/cy2sbml/releases
-* move downloaded `cy2sbml-vx.x.x.jar` in the Cytoscape plugin folder under `Cytoscape_v2.8.3/plugins/`.  
-In Windows this folder is located in `C:/Program Files/Cytoscape_v2.8.3/plugins.`
+* move downloaded `cy2sbml-vx.x.x.jar` in the Cytoscape plugin folder under `Cytoscape_v2.8.3/plugins/`.
 * remove `sbml-reader-2.8.3-jar-with-dependencies.jar` from the plugin folder.
 
 cy2sbml is installed and available in Cytoscape under plugins after the next startup of Cytoscape.
 
 ## Uninstall
-* remove the `cy2sbml-vx.xx.jar` from the plugin folder.
+* remove `cy2sbml-vx.xx.jar` from the plugin folder.
 
 ## Build instructions
 Clone and build from source
@@ -67,6 +66,8 @@ ant cy2sbml
 ```
 
 ## Changelog
+**v1.4.2** [?]
+
 **v1.4.1** [2015-11-03]
 * major bugfix release (AttributeBrowser)
 
