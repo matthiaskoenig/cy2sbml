@@ -1,7 +1,7 @@
 package cysbml;
 
 /*
- Copyright (c) 2014 Matthias Koenig
+ Copyright (c) 2015 Matthias Koenig
 
  This library is free software; you can redistribute it and/or modify it
  under the terms of the GNU Lesser General Public License as published
@@ -59,12 +59,6 @@ import cysbml.SBMLFilter;
  * CSBMLPlugin Cytoscape SBML Plugin based on JSBML.
  * Uses the CytoscapePlugin class to integrate into Cytoscape.
  * 
- * Develobers:
- * Matthias Koenig, Computational Systems Biochemistry, Charite Berlin
- * matthias.koenig [at] charite.de
- * 
- * @author Matthias Koenig
- * @date 2014-01-24
  *    BUG: if node is not in SBML, "NamedSBase for node not found" information should be displayed;
  *    BUG: Visual style can not be changed for GRN Style.
  *  
@@ -89,55 +83,6 @@ import cysbml.SBMLFilter;
  *    TODO: BioModelDialog -> some hacks in the scrollbar to make it work
  *    TODO: SearchResults handled as List and not as Set
  *    TODO: build with MAVEN
- *******************************************
- * MAVEN BUILD INFORMATION FOR DEPENDECIES
- * CYTOSCAPE 2.8.3-SNAPSHOT 
- 
- * MIRIAM
- <dependencies>
-    <dependency>
-      <groupId>uk.ac.ebi.miriam</groupId>
-      <artifactId>miriam-lib</artifactId>
-      <version>1.1.5</version>
-    </dependency>
-  </dependencies>
-  
-  <repositories>
-	<repository>
-	  <id>ebi-repo</id>
-	  <name>The EBI internal repository</name>
-	  <url>http://www.ebi.ac.uk/~maven/m2repo</url>
-	  <releases>
-	    <enabled>true</enabled>
-	  </releases>
-	  <snapshots>
-	    <enabled>false</enabled>
-	  </snapshots>
-	</repository>
-  </repositories>
-  
- * BIOMODELS
-   <dependencies>
-    <dependency>
-      <groupId>uk.ac.ebi.biomodels</groupId>
-      <artifactId>biomodels-wslib</artifactId>
-      <version>1.21</version>
-    </dependency>
-  </dependencies>
-  
-  <repositories>
-  <repository>
-    <id>ebi-repo</id>
-    <name>The EBI internal repository</name>
-    <url>http://www.ebi.ac.uk/~maven/m2repo</url>
-    <releases>
-      <enabled>true</enabled>
-    </releases>
-    <snapshots>
-      <enabled>false</enabled>
-    </snapshots>
-  </repository>
-  </repositories>
  */
 public class CySBML extends CytoscapePlugin implements PropertyChangeListener{
 	public static final String NAME = "cy2sbml"; 

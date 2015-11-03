@@ -58,6 +58,12 @@ ant cy2sbml
 ```
 
 ## Changelog
+**v1.4.1** [2015-11-03]
+* major bugfix release (AttributeBrowser)
+
+**v1.4.0** [2015-10-26]
+* github migrate release
+
 **v1.30** [2014-01-24]
 * java 1.6 compatibility (bug fix)
 

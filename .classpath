@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/biomodels-wslib_standalone-1.21.jar"/>
 	<classpathentry kind="lib" path="lib/MiriamJavaLib_standalone-1.1.5.jar"/>
@@ -15,7 +15,7 @@
 	<classpathentry kind="lib" path="lib/ehcache-2.7.5.jar"/>
 	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/cytoscape.jar"/>
 	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/advanced-network-merge-2.8.3-jar-with-dependencies.jar"/>
-	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/attribute-browser-2.8.3-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/attribute-browser-2.8.3-jar-with-dependencies.jar" sourcepath="/home/mkoenig/Programs/cytoscape2-parent-2.8.3-fixed"/>
 	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/automatic-layout-2.8.3-jar-with-dependencies.jar"/>
 	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/biomart-client-2.8.3-jar-with-dependencies.jar"/>
 	<classpathentry kind="lib" path="/home/mkoenig/git/cy2sbml/lib/cytoscape-2.8.3/plugins/biopax-2.8.3-jar-with-dependencies.jar"/>
