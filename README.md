@@ -1,18 +1,19 @@
 # cy2sbml: SBML for Cytoscape 2
 
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=RYHNRJFBMWD5N" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a>
+
 **cy2sbml** is a [Cytoscape 2](http://www.cytoscape.org) plugin for the Systems Biology Markup Language [SBML](http://www.sbml.org).  
 For Cytoscape 3 use [cy3sbml](https://github.com/matthiaskoenig/cy3sbml).
 
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=RYHNRJFBMWD5N" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a>
-
-**cy2sbml** provides advanced functionality for the import and work with models encoded in SBML, amongst others the 
-visualization of SBML network annotations within the network context, direct import of models from repositories like [biomodels](http://www.biomodels.org) and one-click access to annotation resources and SBML model information and SBML validation.
-
-**Status** : v1.30  
+[![Download](docs/images/icon-download.png) Download](https://github.com/matthiaskoenig/cy2sbml/releases/latest)  
+**Status** : released  
 **Support & Forum** : https://groups.google.com/forum/#!forum/cysbml-cyfluxviz  
 **Bug Tracker** : https://github.com/matthiaskoenig/cy2sbml/issues  
 
 ## Features
+**cy2sbml** provides advanced functionality for the import and work with models encoded in SBML, amongst others the 
+visualization of SBML network annotations within the network context, direct import of models from repositories like [biomodels](http://www.biomodels.org) and one-click access to annotation resources and SBML model information and SBML validation.
+
 * Java based SBML parser for Cytoscape based on [JSBML](http://sourceforge.net/projects/jsbml/)
 * access to models and annotations via [BioModel](http://www.biomodels.org/) and [MIRIAM WebServices](http://www.ebi.ac.uk/miriam/main/)
 * supports all versions of SBML
@@ -26,7 +27,7 @@ visualization of SBML network annotations within the network context, direct imp
   and annotation information
 * succesfully tested with all SBML.org and Biomodels.org testcases (sbml-test-cases-2.0.2, BioModels_Database-r21-sbml_files)
 
-The [cy2sbml tutorial](./doc/tutorial/CySBML-v1.2-tutorial.pdf)  covers the following topics
+The [cy2sbml tutorial](docs/tutorial/CySBML-v1.2-tutorial.pdf)  covers the following topics
 * Installation
 * CySBML interface
 * Import of SBML models
@@ -64,6 +65,11 @@ Clone and build from source
 git clone https://github.com/matthiaskoenig/cy2sbml.git cy2sbml
 cd cy2sbml
 ant cy2sbml
+```
+Development is done in `develop` branch, documentation in `gh-pages`
+```
+git checkout -b develop --track origin/develop
+git checkout -b gh-pages --track origin/gh-pages
 ```
 
 ## Changelog
