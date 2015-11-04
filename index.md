@@ -2,15 +2,17 @@
 layout: default
 title: cy2sbml
 ---
-<div align="right"><a href="{{site.github.repository_url}}/blob/gh-pages/{{page.path}}"><span class="icon icon--github">{% include icon-github.svg %}</span>Edit this page</a></div>
-# Overview
-![cysbml logo](./images/logo-cysbml.png)  
+<div align="right">
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=RYHNRJFBMWD5N" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a>
+<a href="{{site.github.repository_url}}/blob/gh-pages/{{page.path}}"><span class="icon icon--github">{% include icon-github.svg %}</span>Edit this page</a>
+</div>
+
+# ![cysbml logo](docs/images/logo-cysbml.png) Introduction
+  
 cy2sbml is an open source [Cytoscape 2](http://www.cytoscape.org) plugin for the Systems Biology Markup Language [SBML](http://sbml.org/Main_Page).  
 
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=RYHNRJFBMWD5N" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a>
-
 **Latest release**  
-https://github.com/matthiaskoenig/cy2sbml/releases/latest  
+[![Download](docs/images/icon-download.png) Download](https://github.com/matthiaskoenig/cy2sbml/releases/latest)  
 **Installation instructions & source code**  
 https://github.com/matthiaskoenig/cy2sbml/  
 **Support & Forum**: https://groups.google.com/forum/#!forum/cysbml-cyfluxviz  
@@ -40,10 +42,10 @@ Bioinformatics.  2012 Jul 5. [PMID:22772946](http://www.pubmed.org/22772946)
 cy2sbml was developed by [Matthias König](http://www.charite.de/sysbio/people/koenig/) in cooperation with [Andreas Dräger](http://www.ra.cs.uni-tuebingen.de/mitarb/draeger/) from the Center of Bioinformatics Tuebingen (ZBIT) within the [Virtual Liver Network](http://www.virtual-liver.de).  
 We thank Camille Laibe for implementing additional BioModel WebService functionality, the Qual Team and Finja Büchel, Florian Mittag, and Nicolas Rodriguez (Qual implementation in JSBML), Sebastian Fröhlich and Clemens Wrzodek (Layout support in JSBML).
 
-<a href="http://www.virtual-liver.de"><img src="./images/logo-vln.png" alt="VLN Logo" border=0 height=37></img></a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="http://www.charite.de"><img src="./images/logo-charite.png" alt="Charite Logo" border=0 height=37></img></a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="http://www.cytoscape.org"><img src="./images/logo-cytoscape.png" alt="Cytoscape Logo" border=0 height=37></img></a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="http://www.sbml.org"><img src="./images/logo-sbml.png" alt="SBML Logo" border=0 height=37></img></a>&nbsp;&nbsp;
+<a href="http://www.virtual-liver.de"><img src="docs/images/logo-vln.png" alt="VLN Logo" border=0 height=37></img></a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://www.charite.de"><img src="docs/images/logo-charite.png" alt="Charite Logo" border=0 height=37></img></a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://www.cytoscape.org"><img src="docs/images/logo-cytoscape.png" alt="Cytoscape Logo" border=0 height=37></img></a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://www.sbml.org"><img src="docs/images/logo-sbml.png" alt="SBML Logo" border=0 height=37></img></a>&nbsp;&nbsp;
 
 # Usage guide
 ## Tutorial
@@ -59,45 +61,45 @@ The [cy2sbml tutorial](./docs/cy2sbml-v1.2-tutorial.pdf) covers
 ## Menu Bar
 The main functionality of CySBML is accessible via the Cytoscape menu bar in the top region of the Cytoscape window
 
-![cysbml menubar](./images/cysbml-menubar.png)
+![cysbml menubar](docs/images/cysbml-menubar.png)
 
 <table cellpadding="10" valign="top">
    <tr>
-	<td><img src="images/cysbml-import.png"></img></td>
+	<td><img src="docs/images/cysbml-import.png"></img></td>
 	<td><b>SBML Import</b></td>
 	<td>Load SBML files via the File Import Dialog. To import multiple files select multiple files.</td>
    </tr>	
    <tr>
-	<td><img src="images/cysbml-biomodel.png"></img></td>
+	<td><img src="docs/images/cysbml-biomodel.png"></img></td>
 	<td><b>BioModel Import</b></td>
 	<td>SBML files from BioModels are loaded via the BioModel Import Dialog.</td>
    </tr>
    <tr>
-	<td><img src="images/cysbml-validate.png"></img></td>
+	<td><img src="docs/images/cysbml-validate.png"></img></td>
 	<td><b>SBML Validation</b></td>
 	<td>Imported SBML files can be validated. Select the SBML network to validate
 	 	and click the validation icon.</td>
    </tr>
    <tr>
-	<td><img src="images/cysbml-hideshow.png"></img></td>
+	<td><img src="docs/images/cysbml-hideshow.png"></img></td>
 	<td><b>Hide/Show CySBML Panel</b></td>
 	<td>Changes the visibility of the CySBML Panel for better overview. Initially the CySBML Navigation Panel is hidden and 
 	only opened after loading of SBML models.</td>
 </tr>
 <tr>
-	<td><img src="images/cysbml-help.png"></img></td>
+	<td><img src="docs/images/cysbml-help.png"></img></td>
 	<td><b>Help</b></td>
 	<td>CySBML tutorial and help system.</td>
 </tr>
 </table>
 
 ## BioModel Import
-![biomodel](images/cysbml-biomodel.png)  BioModels can be searched via name, person, publication (abstract or pubmed id),
+![biomodel](docs/images/cysbml-biomodel.png)  BioModels can be searched via name, person, publication (abstract or pubmed id),
 ChEBI (id or name) and UniProt (id or name). The selected models form the result list can than be imported.  
 To load, for instance, all models related to the name glycolysis search by name "glycolysis" select all found models and click "Load Selected". Information for the search results is displayed, selected models are marked in green.  
 Alternatively models can be imported based on given BioModel identifiers or text containing BioModel identifiers.
 
-[biomodel-import](images/cysbml-screenshot-biomodel-import.png)
+![biomodel-import](docs/images/cysbml-screenshot-biomodel-import.png)
 
 ## Integration with Cytoscape and Other Plugins
 cysbml integrates seamlessly with the Cytoscape ecosystem consisting of the Cytoscape core and plugins. Many plugins work out of the box
@@ -109,7 +111,7 @@ or [cy2fluxviz](https://github.com/matthiaskoenig/cy2fluxviz) to visualize flux 
 cysbml provides the SBML information as Cytoscape node and edge attributes under well defined names given in the CySBMLConstants class.
 For in detailed information of interaction with CySBML see the tutorial example.
 
-![integration](images/cysbml-screenshot-integration.png)
+![integration](docs/images/cysbml-screenshot-integration.png)
 
 ## SBML Annotations
 MIRIAM and SBO annotations are accessible via the CySBML Navigation Panel in the Cytoscape Results Panel.
@@ -117,19 +119,19 @@ MIRIAM and SBO annotations are accessible via the CySBML Navigation Panel in the
 Annotation information is loaded on the fly for selected nodes in the network, like in the example the information for glucose-6 phosphate
 for the BioModel of Pritchard2002. Crosslinks to additional resources are opened in the browser.
 
-![annotation](images/cysbml-screenshot-annotation.png)
+![annotation](docs/images/cysbml-screenshot-annotation.png)
 
 ## Support of Layout and Qualitative Models Package
 cysbml supports the SBML Level 3 packages for qualitative Models and Layouts. Layout information from the layout extension is used to 
 set the positions and boundary boxes of the nodes. Furthermore, SBML qualitative models can be imported with their annotations and thereby 
 allows for models where species do not represent quantity of matter and processes are not reactions per se like, for instance, boolean networks.
 
-![packages](images/cysbml-screenshot-packages.png)
+![packages](docs/images/cysbml-screenshot-packages.png)
 
 ## SBML Validation
-![validate](images/cysbml-validate.png)  SBML models can be validated from within Cytoscape.
+![validate](docs/images/cysbml-validate.png)  SBML models can be validated from within Cytoscape.
 Validation errors can be filtered by the severity of the error falling in the classes `INFO`, `WARNING`, `ERROR`, `FATAL` and `ALL`.
 
-![validate](images/cysbml-screenshot-validate.png)
+![validate](docs/images/cysbml-screenshot-validate.png)
 
 
