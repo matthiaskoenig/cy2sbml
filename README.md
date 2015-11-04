@@ -6,7 +6,7 @@
 For Cytoscape 3 use [cy3sbml](https://github.com/matthiaskoenig/cy3sbml).
 
 [![Download](docs/images/icon-download.png) Download](https://github.com/matthiaskoenig/cy2sbml/releases/latest)  
-**Status** : released  
+**Documentation** : http://matthiaskoenig.github.io/cy2sbml/  
 **Support & Forum** : https://groups.google.com/forum/#!forum/cysbml-cyfluxviz  
 **Bug Tracker** : https://github.com/matthiaskoenig/cy2sbml/issues  
 
