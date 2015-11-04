@@ -7,7 +7,7 @@
 	<!-- set global properties for this build -->
 	<property name="cytoLibDir" value="lib/cytoscape-2.8.3"/>
 	<property name="name" value="cy2sbml"/>
-    <property name="version" value="v1.4.1"/>
+    <property name="version" value="v1.4.2"/>
     <property name="lib" value="lib"/>	        	
     <property name="src" location="src"/>
 	<property name="test" location="test"/>

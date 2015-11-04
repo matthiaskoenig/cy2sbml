@@ -574,18 +574,21 @@ public class SBMLGraphReader extends AbstractGraphReader implements GraphReader 
 	}
 	
 	private void selectSBMLTableAttributes(){
-		String[] nAtts = {CySBMLConstants.ATT_TYPE,
-						  CySBMLConstants.ATT_NAME,
-						  CySBMLConstants.ATT_COMPARTMENT,
-						  CySBMLConstants.ATT_METAID,
-						  CySBMLConstants.ATT_SBOTERM};
+		// DO NOT USE Arrays.asList, which will break the Cytoscape AttributeBrowser
+		List<String> nAtts =  new ArrayList<String>();
+		nAtts.add(CySBMLConstants.ATT_TYPE);
+		nAtts.add(CySBMLConstants.ATT_NAME);
+		nAtts.add(CySBMLConstants.ATT_COMPARTMENT);
+		nAtts.add(CySBMLConstants.ATT_METAID);
+		nAtts.add(CySBMLConstants.ATT_SBOTERM);
 		
-		String[] eAtts = {Semantics.INTERACTION,
-						  CySBMLConstants.ATT_STOICHIOMETRY,
-						  CySBMLConstants.ATT_METAID,
-						  CySBMLConstants.ATT_SBOTERM};
-		AttributeUtils.selectTableAttributes(Arrays.asList(nAtts), Arrays.asList(eAtts));
+		List<String> eAtts = new ArrayList<String>();
+		eAtts.add(Semantics.INTERACTION);
+		eAtts.add(CySBMLConstants.ATT_STOICHIOMETRY);
+		eAtts.add(CySBMLConstants.ATT_METAID);
+		eAtts.add(CySBMLConstants.ATT_SBOTERM);
+						  
+		AttributeUtils.selectTableAttributes(nAtts, eAtts);
 	}
-	
 
 }

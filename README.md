@@ -5,6 +5,7 @@
 **cy2sbml** is a [Cytoscape 2](http://www.cytoscape.org) plugin for the Systems Biology Markup Language [SBML](http://www.sbml.org).  
 For Cytoscape 3 use [cy3sbml](https://github.com/matthiaskoenig/cy3sbml).
 
+
 [![Download](docs/images/icon-download.png) Download](https://github.com/matthiaskoenig/cy2sbml/releases/latest)  
 **Status** : released  
 **Support & Forum** : https://groups.google.com/forum/#!forum/cysbml-cyfluxviz  
@@ -50,14 +51,13 @@ Bioinformatics. 2012 Jul 5. [PubMed](http://www.ncbi.nlm.nih.gov/pubmed/22772946
     http://chianti.ucsd.edu/Cyto-2_8_3/
 * download latest release jar  
     https://github.com/matthiaskoenig/cy2sbml/releases
-* move downloaded `cy2sbml-vx.x.x.jar` in the Cytoscape plugin folder under `Cytoscape_v2.8.3/plugins/`.  
-In Windows this folder is located in `C:/Program Files/Cytoscape_v2.8.3/plugins.`
+* move downloaded `cy2sbml-vx.x.x.jar` in the Cytoscape plugin folder under `Cytoscape_v2.8.3/plugins/`.
 * remove `sbml-reader-2.8.3-jar-with-dependencies.jar` from the plugin folder.
 
 cy2sbml is installed and available in Cytoscape under plugins after the next startup of Cytoscape.
 
 ## Uninstall
-* remove the `cy2sbml-vx.xx.jar` from the plugin folder.
+* remove `cy2sbml-vx.xx.jar` from the plugin folder.
 
 ## Build instructions
 Clone and build from source
@@ -73,6 +73,14 @@ git checkout -b gh-pages --track origin/gh-pages
 ```
 
 ## Changelog
+**v1.4.2** [?]
+
+**v1.4.1** [2015-11-03]
+* major bugfix release (AttributeBrowser)
+
+**v1.4.0** [2015-10-26]
+* github migrate release
+
 **v1.30** [2014-01-24]
 * java 1.6 compatibility (bug fix)
 

@@ -6,12 +6,14 @@ import java.util.Set;
 
 import browser.AttributeBrowser;
 import browser.AttributeBrowserPlugin;
-
+import cysbml.CySBML;
 import cytoscape.CyNode;
 import cytoscape.Cytoscape;
 import cytoscape.data.CyAttributes;
 
+/** Utilities for the interaction with the Cytoscape attribute tables. */
 public class AttributeUtils {
+	
 	/** Get the set of different values used in the attribute. 
 	 * Here for every attribute the values which can be used for the attribute subnetworks
 	 * are defined.
@@ -31,9 +33,9 @@ public class AttributeUtils {
 		return valueSet;
 	}
 	
-	
 	/** Selects Node and Edge Attributes in the Attribute Table Viewer. */
 	public static void selectTableAttributes(List<String> nAtts, List<String> eAtts){
+		CySBML.LOGGER.info("selectTableAttributes in AttributeBrowser");
 		// selected node attributes
 		AttributeBrowser nodeAttributeBrowser = AttributeBrowserPlugin.getAttributeBrowser(browser.DataObjectType.NODES);
 		nodeAttributeBrowser.setSelectedAttributes(nAtts);
